@@ -1,0 +1,96 @@
+.content_1_header_line
+{
+    width: 64.8809524vw;
+}
+
+.content_1_main_header, .content_1_main_video_text
+{
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9920635vw;
+    line-height: 1.190476vw;
+
+    color: rgba(0, 0, 0, 0.48);
+}
+
+.content_1_main_header
+{
+    margin-bottom: 0.661376vw;
+    margin-top: 1.984126vw;
+}
+
+.content_1_main
+{
+    display: flex;
+    flex-direction: row;
+    
+    background: #FFFFFF;
+    
+    border-radius: 0.9920635vw;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.content_1_main_video_1
+{
+    width: 20.3042328vw;
+    height: 11.507937vw;
+}
+
+.content_1_main_video_text
+{
+    margin-bottom: 1.058201vw;
+    margin-top: 1.984126vw;
+}
+
+.content_1_main_text
+{
+    margin-left: 1.984126vw;
+    width: 23.809524vw;
+}
+
+.content_1_main_text_name_2, .content_1_main_text_format_2, .content_1_main_text_length_2, .content_1_main_text_resolutions_2, .content_1_main_text_size_2
+{
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 400;
+}
+
+.content_1_main_text_name_1, .content_1_main_text_format_1, .content_1_main_text_length_1, .content_1_main_text_resolutions_1, .content_1_main_text_size_1
+{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.content_1_main_text_description
+{
+    font-style: normal;
+    font-size: 0.9920635vw;
+    line-height: 1.587302vw;
+
+    color: #000000;
+    
+    height: 10.1190476vw;
+}
+
+.content_1_main_text_PDF
+{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.9920635vw;
+    line-height: 1.587302vw;
+
+    color: #35BE1F;  
+    
+    margin-bottom: 1.984126vw;
+}
+
+.content_1_main_video
+{
+    margin-right: 33.2671958vw;
+}
+
+.content_1
+{
+    margin-bottom: 1.984126vw;
+}

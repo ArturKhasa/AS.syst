@@ -1,0 +1,41 @@
+@media screen and (max-width:710px)
+{
+    .all{
+        display: none;
+    }
+    
+    .mobile{
+        width: 100%;
+        display: block;
+    }   
+    
+    .mobile_footer
+    {
+        width: 100%;
+        height: 15.38462vw;
+
+        background: #1B1C37;
+    }
+
+    .mobile_footer_text_1, .mobile_footer_text_2
+    {
+        margin-left: 5.1282vw;
+
+        font-family: 'PT Sans', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2.051283vw;
+
+        color: #FFFFFF;
+    }
+
+    .mobile_footer_text_1
+    {
+        padding-top: 5.1282vw;
+    }
+
+    .mobile_footer_text_2
+    {
+        padding-bottom: 5.1282vw;
+    }
+}

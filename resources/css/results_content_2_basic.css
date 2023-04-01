@@ -1,0 +1,134 @@
+.content_2_header_line
+{
+    width: 64.153439vw;
+}
+
+.content_2_two, .content_2_three
+{
+    background: #FFFFFF;
+    
+    border-radius: 0.9920635vw;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.content_2_one, .content_2_two, .content_2_two_2_main
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.content_2_one
+{
+    margin-bottom: 1.984126vw;
+}
+
+.content_2_two_1_header
+{
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9920635vw;
+    line-height: 1.190476vw;
+
+    color: rgba(0, 0, 0, 0.48);
+    
+    margin: 1.984126vw 10.7486772vw 0.661376vw 1.984126vw;
+}
+
+.content_2_two_text, .content_2_two_2_main_text
+{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.9920635vw;
+    line-height: 1.6534392vw;
+
+    color: #000000;
+}
+
+.content_2_two_2_main_text
+{
+    margin-left: 1.322751vw;
+}
+
+.content_2_two_2_main_img
+{
+    width: 5.291005vw;
+    height: 5.291005vw;
+    
+    margin-left: 1.322751vw;
+    margin-right: 3.306878vw;
+}
+    
+.content_2_two_text
+{
+    min-height: 11.904762vw;
+    min-width: 13.8492063vw;
+    
+    margin-left: 1.984126vw;
+    margin-bottom: 1.984126vw;
+}
+
+.content_2_two_text_header
+{
+    padding-bottom: 1.984126vw;
+}
+
+.content_2_two_2_header
+{
+    color: rgba(0, 0, 0, 0.48);
+    
+    margin-top: 1.984126vw;
+    margin-bottom: 1.322751vw;
+}
+
+.content_2_two_main_plus
+{
+    width: 2.248677vw;
+    height: 2.1825397vw;
+    
+    padding: 1.521164vw;
+    
+    border: 0.0661376vw solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    
+    background: #FFFFFF;
+}
+
+.content_2_three_header, .content_2_three_time, .content_2_two_2_header
+{
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9920635vw;
+    line-height: 1.190476vw;
+}
+
+.content_2_three_header
+{
+    color: rgba(0, 0, 0, 0.48);
+    
+    margin: 1.984126vw 0 1.719577vw 1.984126vw;
+    padding-top: 1.984126vw;
+}
+
+.content_2_three_chart
+{
+    width: 77.380952vw;
+    
+    margin-left: 1.984126vw;
+}
+
+.content_2_three_time
+{
+    color: #727272;
+    
+    text-align: right;
+    
+    padding: 1.322751vw 1.984126vw 2.645503vw 0;
+}
+
+.content_2_three
+{
+    margin-bottom: 2.9761905vw;
+}
