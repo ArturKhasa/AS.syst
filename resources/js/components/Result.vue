@@ -316,7 +316,8 @@
     export default {
         data () {
             return {
-                data: null
+                data: null,
+                result: null,
             }
         },
 
@@ -326,7 +327,7 @@
 
                 var data = {
                     datasets: [{
-                        data: [50, 10, 10, 10, 10, 10],
+                        data: this.result,
                         backgroundColor: ['#FF784C', '#0077FF', '#D74CFA', '#F76672', '#858585', '#64CB54']
                     }]
                 };
@@ -361,12 +362,19 @@
                         }
                     }
                 });
+            },
+
+            loadResult () {
+                axios.get('api/get')
+                .then((res) => {
+                    this.result = res.data.result
+                    this.loadCircle()
+                })
             }
         },
 
         mounted() {
-            this.loadCircle()
-
+            this.loadResult()
         }
     }
 </script>
