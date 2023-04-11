@@ -5375,15 +5375,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      data: null
+      data: null,
+      result: null
     };
   },
   methods: {
     loadCircle: function loadCircle() {
+      console.log('nu tutt');
       var ctx = this.$refs['circle_chart'].getContext('2d');
       var data = {
         datasets: [{
-          data: [50, 10, 10, 10, 10, 10],
+          data: this.result,
           backgroundColor: ['#FF784C', '#0077FF', '#D74CFA', '#F76672', '#858585', '#64CB54']
         }]
       };
@@ -5410,10 +5412,17 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+    loadResult: function loadResult() {
+      var _this = this;
+      axios.get('api/get').then(function (res) {
+        _this.result = res.data.result;
+        _this.loadCircle();
+      });
     }
   },
   mounted: function mounted() {
-    this.loadCircle();
+    this.loadResult();
   }
 });
 
