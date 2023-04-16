@@ -18,6 +18,16 @@ class ResultController extends Controller
 
     public function index(Request $request)
     {
+//        $client = new \GuzzleHttp\Client();
+//        $response = $client->request('POST', 'http://127.0.0.1:80/predict', [
+//            'json' => [
+//                'filename'=>'C:/Users/Артур/PhpstormProjects/AS.syst/storage/app/public/videos/IMG_4635/IMG_4635.mp4',
+//                'fps' => 3
+//            ]
+//        ]);
+//
+//        $data = $response->getBody()->getContents();
+//
         $data = file_get_contents(storage_path() . '/app/public/result.json');
 
         $result = json_decode($data, true);
