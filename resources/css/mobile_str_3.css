@@ -146,30 +146,20 @@
         font-size: 3.589743vw;
         text-align: justify;
         
-        background: linear-gradient(91.69deg, #82E80D -2.59%, #35BE1F 144.06%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+        color: #31d118;
         
         margin-top: 9.230769vw;
         margin-left: 7.692307vw;
         margin-right: 25.641026vw;
     }
     
-    .mobile_content_3_1_img_bg
-    {
-        background: linear-gradient(91.13deg, #82E80D -394.34%, #48C81D 136.79%);       
-        
-        border-radius: 50%;
-        
-        width: 6.410256vw;
-        height: 6.410256vw;
-        
-        padding: 5.76923vw;
+    .mobile_content_3_1_img
+    { 
+        width: 18vw;
+        height: 18vw;
     
-        margin-left: 74.358974vw;
-        margin-top: -16.67vw;
+        margin-left: 76.358974vw;
+        margin-top: -20.67vw;
     }
     
     .mobile_content_3_1_1_circle_1, .mobile_content_3_1_1_circle_2, .mobile_content_3_1_1_circle_3, .mobile_content_3_1_1_circle_4, .mobile_content_3_1_1_circle_5, .mobile_content_3_1_1_circle_6, .mobile_content_3_1_1_circle_7, .mobile_content_3_1_1_circle_8,
@@ -363,19 +353,13 @@
         margin-top: 5.1282vw;
     }
     
-    .mobile_content_3_2_img_bg
-    {
-        background: linear-gradient(91.13deg, #82E80D -394.34%, #48C81D 136.79%);       
-        
-        border-radius: 50%;
-        
-        width: 6.410256vw;
-        height: 6.410256vw;
-        
-        padding: 5.76923vw;
+    .mobile_content_3_2_img
+    {      
+        width: 18vw;
+        height: 18vw;
     
         margin-left: 7.692307vw;
-        margin-top: 5.1282vw;
+        margin-top: 3.67vw;
     }
     
     .mobile_content_3_2_text
@@ -386,11 +370,7 @@
         font-size: 3.589743vw;
         text-align: right;
         
-        background: linear-gradient(90.23deg, #7AE410 -45.46%, #35BE1F 107.95%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+        color: #31ce19;
         
         margin-top: -15.38462vw;
         margin-left: 30.769231vw;
@@ -593,30 +573,20 @@
         font-weight: 700;
         font-size: 3.589743vw;
 
-        background: linear-gradient(90.83deg, #82E80D -4.23%, #48C81D 144.19%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+        color: #42d212;
         
         margin-top: 5.1282vw;
         margin-left: 7.692307vw;
         margin-right: 25.641026vw;
     }
     
-    .mobile_content_3_3_img_bg
+    .mobile_content_3_3_img
     {
-        background: linear-gradient(91.13deg, #82E80D -394.34%, #48C81D 136.79%);       
-        
-        border-radius: 50%;
-        
-        width: 6.410256vw;
-        height: 6.410256vw;
-        
-        padding: 5.76923vw;
-    
-        margin-left: 74.358974vw;
-        margin-top: -16.67vw;
+        width: 18vw;
+        height: 18vw;
+            
+        margin-left: 75.358974vw;
+        margin-top: -18.67vw;
     }
     
     .mobile_content_3_3_1_circle_1, .mobile_content_3_3_1_circle_2, .mobile_content_3_3_1_circle_3, .mobile_content_3_3_1_circle_4, .mobile_content_3_3_1_circle_5, .mobile_content_3_3_1_circle_6, .mobile_content_3_3_1_circle_7, .mobile_content_3_3_1_circle_8, .mobile_content_3_3_1_circle_9, .mobile_content_3_3_1_circle_10, .mobile_content_3_3_2_circle_1, .mobile_content_3_3_2_circle_2, .mobile_content_3_3_2_circle_3, .mobile_content_3_3_2_circle_4, .mobile_content_3_3_2_circle_5, .mobile_content_3_3_2_circle_6, .mobile_content_3_3_2_circle_7, .mobile_content_3_3_2_circle_8
@@ -819,16 +789,12 @@
         margin-left: 14.615385vw;
     }
     
-    .mobile_content_3_4_img_bg
+    .mobile_content_3_4_img
     {
-        background: linear-gradient(91.13deg, #82E80D -394.34%, #48C81D 136.79%);       
+        width: 18vw;
+        height: 18vw;
         
-        border-radius: 50%;
-        
-        width: 6.410256vw;
-        height: 6.410256vw;
-        
-        padding: 5.76923vw;
+        /* padding: 5.76923vw; */
     
         margin-left: 7.692307vw;
         margin-top: 5.1282vw;
@@ -843,12 +809,8 @@
         font-size: 3.589743vw;
         text-align: right;
         
-        background: linear-gradient(90deg, #7EE60F -19.79%, #35BE1F 102.71%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-        
+        color: #2fcb17;
+
         margin-top: -15.38462vw;
         margin-left: 30.769231vw;
         margin-right: 3.846153vw;
@@ -856,19 +818,10 @@
     
     .mobile_content_3_circle{
         background-image: url(img/mobile_bg_2.png);
-        background-position: 60% 355%;
+        background-position: 70% -68.461538vw;
         background-repeat: no-repeat;
-        background-size: 330vw 250vw;
+        background-size: 330vw 300vw;
         
         min-height: 230.769231vw;
-    }
-}
-
-@media screen and (max-width:415px)
-{
-    .mobile_content_3_circle
-    {
-        background-size: 250vw 250vw;
-        background-position: 60% -20vw;
     }
 }

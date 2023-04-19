@@ -1,5 +1,5 @@
 @media screen and (max-width:710px)
-{
+{    
     .mobile_header_2
     {
         font-family: 'PT Sans', sans-serif;
@@ -24,11 +24,7 @@
     
     .mobile_content_2_1_header
     {
-        background: linear-gradient(270deg, #FD3259 1.81%, #FF0031 93.98%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
+        color: #ff1b49;
         
         padding-top: 28.205vw;
         margin-left: 7.692307vw;

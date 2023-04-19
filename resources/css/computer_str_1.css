@@ -1,11 +1,11 @@
 .all_str_1
 {
-    background-image: url(/img/bg_1.jpg);
+    background-image: url(img/bg_1.jpg);
 }
 
 .header
 {
-    padding-top: 3%;
+    padding-top: 3%;    
 }
 
 .header_content
@@ -16,28 +16,31 @@
     position: relative;
     height: 4.762vw;
     background: white;
-
+    
     box-shadow: 8.66007px 3.60836px 72.1672px rgba(0, 0, 0, 0.18);
     border-radius: 0.992065vw;
 }
 
-.text_logo, .FAQ_header, .main_header, .results_header_main
+.FAQ_header, .main_header, .results_header_main
 {
     position: absolute;
-
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
+    text-decoration: none;
 }
 
 .text_logo
 {
+    position: absolute;
+    
     margin-left: 7.8704vw;
     margin-top: 1.65344vw;
     margin-bottom: 1.65344vw;
-
+    
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
     font-weight: 500;
     font-size: 1.32275vw;
     line-height: 1.98413vw;
+    text-decoration: none;
 
     color: #1B1C37;
 }
@@ -46,7 +49,9 @@
     margin-left: 31.4815vw;
     margin-top: 1.521165vw;
     margin-bottom: 1.521165vw;
-
+    
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
     font-weight: 600;
     font-size: 1.14551vw;
     line-height: 1.719575vw;
@@ -59,20 +64,22 @@
     margin-left: 40.07935vw;
     margin-top: 1.521165vw;
     margin-bottom: 1.521165vw;
-
+    
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
     font-weight: 600;
     font-size: 1.14551vw;
     line-height: 1.719575vw;
     text-align: center;
     width: 6.614vw;
-
+    
     color: #35BE1F;
 }
 
 .main_header_top, .main_header_bottom
 {
     border: 0.198413vw solid #35BE1F;
-
+    
     display: block;
     width: 6.2615vw;
     margin-left: 40.07935vw;
@@ -86,9 +93,9 @@
 .img_logo_1, .img_logo_2, .img_logo_3
 {
     background: linear-gradient(90deg, #35BE1F 0%, #6ED90B 100%);
-
+    
     border-radius: 50%;
-
+        
     position: absolute;
 }
 
@@ -125,7 +132,7 @@
 {
     margin-top: 6.61378vw;
     margin-right: 57%;
-
+    
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -135,10 +142,7 @@
     display: flex;
     align-items: center;
 
-    background: linear-gradient(99.94deg, #35BE1F 1.77%, #94F107 88.84%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #58da44;
 }
 
 .content_text_1, .content_text_2
@@ -172,13 +176,13 @@
     align-content: center;
     align-items: center;
     justify-content: center;
-
+    
     margin-top: 3.968254vw;
     margin-right: 64.2857vw;
     margin-bottom: 8vw;
 
     width: 29.101vw;
-
+    
     background: #1B1C37;
     border-radius: 0.79365vw;
 }
@@ -191,7 +195,7 @@
     font-size: 1.5873vw;
     line-height: 2.38095vw;
     color: #FFFFFF;
-
+    
     padding-top: 1.0582vw;
     padding-bottom: 1.0582vw;
 
@@ -213,10 +217,10 @@
 {
     position: absolute;
     content: '';
-    left: 32%;
-    top: 32%;
-    Width: 0.251984vw;
-    Height: 0.251984vw;
+    left: 22%;
+    top: 22%;
+    width: 0.551984vw;
+    height: 0.551984vw;
     border-top: 0.165344vw solid #FFFFFF
  !important;
     border-right: 0.165344vw solid #FFFFFF !important;
@@ -225,13 +229,15 @@
 
 .results_header_main
 {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
     font-weight: 600;
     font-size: 1.14551vw;
     line-height: 1.719575vw;
     text-decoration: none;
 
     color: #FF9900;
-
+    
     margin-left: 75.331vw;
     margin-top: 1.521165vw;
     margin-bottom: 1.521165vw;
