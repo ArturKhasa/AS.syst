@@ -10,7 +10,7 @@
                     <div class="content_text_2">
                         Стало интересно? Заходи и будь с нами!
                     </div>
-                    <button class="content_button">
+                    <button @click="toFree()" class="content_button">
                         <div class="content_button_text">Попробовать бесплатно</div>
                         <div class="content_button_img">
                             <div class="right-arrow"></div>
@@ -130,7 +130,7 @@
                             <div class="circle_4"></div>
                         </div>
                     </div>
-                    <div class="circle_5_6_7_header_4">
+                    <div class="circle_5_6_7_header_4" ref="video_block">
                         <div class="circle_5_6_7">
                             <div class="circle_5"></div>
                             <div class="circle_6"></div>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="content_4">
 
-                    <div class="content_4_one">
+                    <div v-if="!videoIsLoaded" class="content_4_one">
                         <div class="content_4_one_1">
                             <div class="content_4_one_1_img">
                                 <img style="width: 4.3655vw;" src="static/img/pc_4.png">
@@ -178,33 +178,33 @@
                         </div>
                     </div>
 
-<!--                    <div class="content_4_two_three">-->
-<!--                        <div class="content_4_two_three_img" id="content_4_two_three">-->
-<!--                            <img class="img_pc_4_2" src="static/img/pc_4_2.png">-->
+                    <div v-if="videoIsLoaded" class="content_4_two_three">
+                        <div class="content_4_two_three_img" id="content_4_two_three">
+                            <img class="img_pc_4_2" src="static/img/pc_4_2.png">
 
-<!--                    <div class="content_4_two">-->
-<!--                        <div class="content_4_two_text_1">-->
-<!--                            Видео обрабатывается-->
-<!--                        </div>-->
-<!--                        <div class="content_4_two_text_2">-->
-<!--                            Пожалуйста, подождите...-->
-<!--                        </div>-->
-<!--                        <div class="content_4_two_text_3">-->
-<!--                            Выполнено: n%-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div v-if="!hasResult" class="content_4_two">
+                        <div class="content_4_two_text_1">
+                            Видео обрабатывается
+                        </div>
+                        <div class="content_4_two_text_2">
+                            Пожалуйста, подождите...
+                        </div>
+                        <div class="content_4_two_text_3">
+                            Выполнено: {{percent}}%
+                        </div>
+                    </div>
 
-<!--                    <div class="content_4_three">-->
-<!--                        <div class="content_4_three_text">-->
-<!--                            Анализ успешно выполнен!-->
-<!--                        </div>-->
-<!--                        <a class="content_4_three_button" href="results.html">-->
-<!--                            Показать результаты-->
-<!--                        </a>-->
-<!--                    </div>-->
+                    <div v-if="hasResult" class="content_4_three">
+                        <div class="content_4_three_text">
+                            Анализ успешно выполнен!
+                        </div>
+                        <a @click="goToResult()" class="content_4_three_button">
+                            Показать результаты
+                        </a>
+                    </div>
 
-<!--                     </div>-->
-<!--                     </div>-->
+                     </div>
+                     </div>
                 </div>
             </div>
             <div class="transition"></div>
@@ -261,6 +261,8 @@
                 </div>
             </div>
         </div>
+
+<!--     Mobile   -->
         <div class="mobile">
             <div class="mobile_str_1">
                 <div class="mobile_header">
@@ -290,7 +292,7 @@
                         Стало интересно? Заходи и будь с нами!
                     </div>
                     <div class="mobile_content_1_button">
-                        <button class="mobile_content_1_button_content">
+                        <button @click="toFree(this)" class="mobile_content_1_button_content">
                             <div class="mobile_content_1_button_content_text">
                                 Попробовать бесплатно
                             </div>
@@ -679,7 +681,9 @@
     export default {
         data() {
             return {
-
+                videoIsLoaded: false,
+                hasResult: false,
+                percent: 0
             }
         },
 
@@ -690,7 +694,16 @@
 
             sendVideo() {
                 let file = this.$refs.file_input.files[0]
+                this.videoIsLoaded = true
                 console.log(file)
+
+                let part = 1301808
+                let size = file.size
+
+                var self = this
+                setInterval( function() {
+                    self.percent++
+                }, size/part * 10);
 
                 let formData = new FormData()
                 formData.append('video', file)
@@ -702,13 +715,33 @@
                     }
                 })
                     .then((res) => {
-                        console.log(res.data)
+                        this.$parent.dataset = res.data
+                        this.hasResult = true
+                        this.$parent.showHeaderResult = true
+                        this.$parent.video = res.data.fileUrl
                     })
+            },
+
+            toFree () {
+                this.$refs.video_block.scrollIntoView()
+            },
+
+            goToResult() {
+                this.$parent.showResult = true
+                this.$parent.showHome = false
             }
         },
 
         mounted() {
-            console.log('home')
+            // let part = 1301808
+            // let size = 19527124
+            // let percent = 0
+            // setInterval(function () {
+            //     if (percent < 100) {
+            //         percent++
+            //         console.log(percent)
+            //     }
+            // }, (part/size) * 1000, percent)
         }
     }
 </script>

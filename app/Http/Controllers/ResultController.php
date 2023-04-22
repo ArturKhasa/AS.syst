@@ -21,20 +21,20 @@ class ResultController extends Controller
 //        $data = file_get_contents(storage_path() . '/app/public/result.json');
 //        $result = json_decode($data, true);
 
-        if($request->file('video')) {
+        if ($request->file('video')) {
             $file = $request->file('video');
             $extension = $file->getClientOriginalExtension();
 
             $fileUrl = self::removeFileExtension($file->store('public/xui'));
 
-            $resultUrl = base_path() . '/storage/app/' .  $fileUrl . '.' . $extension;
+            $resultUrl = base_path() . '/storage/app/' . $fileUrl . '.' . $extension;
         };
 
         $command = escapeshellcmd('python3' . ' ' . base_path() . '/predict.py' . ' ' . $resultUrl);
         exec($command, $output);
 
         $test = [];
-        foreach($output as $key => $out) {
+        foreach ($output as $key => $out) {
             $test[$key] = json_decode($out, true);
         }
 
@@ -42,8 +42,9 @@ class ResultController extends Controller
         $this->getCountUsers($result);
 
         return [
-            'result' => array_values($this->getAvg($result)),
-            'sum'    => collect($this->getAvg($result))->sum()
+            'result'  => array_values($this->getAvg($result)),
+            'sum'     => collect($this->getAvg($result))->sum(),
+            'fileUrl' => $resultUrl
         ];
     }
 
@@ -90,6 +91,6 @@ class ResultController extends Controller
 
     public static function removeFileExtension($fileName)
     {
-        return substr($fileName, 0, strrpos($fileName,'.'));
+        return substr($fileName, 0, strrpos($fileName, '.'));
     }
 }

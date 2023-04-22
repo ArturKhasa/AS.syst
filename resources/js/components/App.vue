@@ -14,7 +14,7 @@
                     <a class="FAQ_header">FAQ</a>
                     <a class="main_header_top"></a>
                     <a class="main_header">Главная</a>
-                    <a class="results_header_main" @click="showHome = false">Результаты</a>
+                    <a v-if="showHeaderResult" class="results_header_main" @click="showHome = false">Результаты</a>
                     <a class="main_header_bottom"></a>
                 </div>
             </div>
@@ -48,6 +48,9 @@
             return {
                 showHome: true,
                 showResult: false,
+                showHeaderResult: false,
+                dataset: null,
+                video: null
             }
         },
 
