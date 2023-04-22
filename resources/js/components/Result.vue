@@ -67,6 +67,9 @@
                             Предварительный просмотр
                         </div>
                         <img class="content_1_main_video_1" src="static/imgs/pc_1.png">
+                        <video>
+                            <source></source>
+                        </video>
                     </div>
                 </div>
             </div>
@@ -321,8 +324,18 @@
             }
         },
 
+        watch: {
+            'this.$parent.dataset': {
+                deep: true,
+                handler: function (val) {
+                    console.log(val)
+                }
+            }
+        },
+
         methods: {
             loadCircle() {
+                this.result = this.$parent.dataset.result
                 var ctx = this.$refs['circle_chart'].getContext('2d');
 
                 var data = {
@@ -362,19 +375,12 @@
                         }
                     }
                 });
-            },
-
-            loadResult () {
-                axios.get('api/get')
-                .then((res) => {
-                    this.result = res.data.result
-                    this.loadCircle()
-                })
             }
         },
 
         mounted() {
-            this.loadResult()
+            this.loadCircle()
+            window.scrollTo(0, 0)
         }
     }
 </script>

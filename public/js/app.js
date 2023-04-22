@@ -5320,7 +5320,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       showHome: true,
-      showResult: false
+      showResult: false,
+      showHeaderResult: false,
+      dataset: null,
+      video: null
     };
   },
   components: {
@@ -5352,15 +5355,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      videoIsLoaded: false,
+      hasResult: false,
+      percent: 0
+    };
   },
   methods: {
     setVideo: function setVideo() {
       this.$refs.file_input.click();
     },
     sendVideo: function sendVideo() {
+      var _this = this;
       var file = this.$refs.file_input.files[0];
+      this.videoIsLoaded = true;
       console.log(file);
+      var part = 1301808;
+      var size = file.size;
+      var self = this;
+      setInterval(function () {
+        self.percent++;
+      }, size / part * 10);
       var formData = new FormData();
       formData.append('video', file);
       axios.post('api/get', formData, {
@@ -5368,12 +5383,30 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'video/mp4'
         }
       }).then(function (res) {
-        console.log(res.data);
+        _this.$parent.dataset = res.data;
+        _this.hasResult = true;
+        _this.$parent.showHeaderResult = true;
+        _this.$parent.video = res.data.fileUrl;
       });
+    },
+    toFree: function toFree() {
+      this.$refs.video_block.scrollIntoView();
+    },
+    goToResult: function goToResult() {
+      this.$parent.showResult = true;
+      this.$parent.showHome = false;
     }
   },
   mounted: function mounted() {
-    console.log('home');
+    // let part = 1301808
+    // let size = 19527124
+    // let percent = 0
+    // setInterval(function () {
+    //     if (percent < 100) {
+    //         percent++
+    //         console.log(percent)
+    //     }
+    // }, (part/size) * 1000, percent)
   }
 });
 
@@ -5397,8 +5430,17 @@ __webpack_require__.r(__webpack_exports__);
       result: null
     };
   },
+  watch: {
+    'this.$parent.dataset': {
+      deep: true,
+      handler: function handler(val) {
+        console.log(val);
+      }
+    }
+  },
   methods: {
     loadCircle: function loadCircle() {
+      this.result = this.$parent.dataset.result;
       var ctx = this.$refs['circle_chart'].getContext('2d');
       var data = {
         datasets: [{
@@ -5429,17 +5471,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
-    },
-    loadResult: function loadResult() {
-      var _this = this;
-      axios.get('api/get').then(function (res) {
-        _this.result = res.data.result;
-        _this.loadCircle();
-      });
     }
   },
   mounted: function mounted() {
-    this.loadResult();
+    this.loadCircle();
+    window.scrollTo(0, 0);
   }
 });
 
@@ -5474,14 +5510,14 @@ var render = function render() {
     staticClass: "main_header_top"
   }), _vm._v(" "), _c("a", {
     staticClass: "main_header"
-  }, [_vm._v("Главная")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Главная")]), _vm._v(" "), _vm.showHeaderResult ? _c("a", {
     staticClass: "results_header_main",
     on: {
       click: function click($event) {
         _vm.showHome = false;
       }
     }
-  }, [_vm._v("Результаты")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("Результаты")]) : _vm._e(), _vm._v(" "), _c("a", {
     staticClass: "main_header_bottom"
   })])]) : _vm._e(), _vm._v(" "), _vm.showResult ? _c("div", {
     staticClass: "header"
@@ -5555,7 +5591,31 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("div", {
     staticClass: "all"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "all_str_1"
+  }, [_c("div", {
+    staticClass: "content"
+  }, [_c("div", {
+    staticClass: "content_header"
+  }, [_vm._v("Что есть эмоция?")]), _vm._v(" "), _c("div", {
+    staticClass: "content_text_1",
+    attrs: {
+      id: "text_1"
+    }
+  }, [_vm._v("\n                        Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функциональьного состояния организма. Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_text_2"
+  }, [_vm._v("\n                        Стало интересно? Заходи и будь с нами!\n                    ")]), _vm._v(" "), _c("button", {
+    staticClass: "content_button",
+    on: {
+      click: function click($event) {
+        return _vm.toFree();
+      }
+    }
+  }, [_c("div", {
+    staticClass: "content_button_text"
+  }, [_vm._v("Попробовать бесплатно")]), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c("div", {
+    staticClass: "transition"
+  })]), _vm._v(" "), _c("div", {
     staticClass: "all_str_2"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "header_2"
@@ -5588,13 +5648,20 @@ var render = function render() {
     staticClass: "transition"
   })]), _vm._v(" "), _vm._m(8), _vm._v(" "), _c("div", {
     staticClass: "all_str_4"
-  }, [_vm._m(9), _vm._v(" "), _c("div", {
-    staticClass: "content_4"
   }, [_c("div", {
+    staticClass: "circles"
+  }, [_vm._m(9), _vm._v(" "), _c("div", {
+    ref: "video_block",
+    staticClass: "circle_5_6_7_header_4"
+  }, [_vm._m(10), _vm._v(" "), _c("div", {
+    staticClass: "header_4"
+  }, [_vm._v("\n                            Запустите AS.SYST прямо сейчас!\n                        ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "content_4"
+  }, [!_vm.videoIsLoaded ? _c("div", {
     staticClass: "content_4_one"
   }, [_c("div", {
     staticClass: "content_4_one_1"
-  }, [_vm._m(10), _vm._v(" "), _c("div", {
+  }, [_vm._m(11), _vm._v(" "), _c("div", {
     staticClass: "content_4_one_1_text"
   }, [_c("div", {
     staticClass: "content_4_one_1_text_1",
@@ -5612,36 +5679,86 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "content_4_one_1_text_2"
-  }, [_vm._v("\n                                    или перетащите его сюда\n                                ")])])]), _vm._v(" "), _vm._m(11)])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    или перетащите его сюда\n                                ")])])]), _vm._v(" "), _vm._m(12)]) : _vm._e(), _vm._v(" "), _vm.videoIsLoaded ? _c("div", {
+    staticClass: "content_4_two_three"
+  }, [_c("div", {
+    staticClass: "content_4_two_three_img",
+    attrs: {
+      id: "content_4_two_three"
+    }
+  }, [_c("img", {
+    staticClass: "img_pc_4_2",
+    attrs: {
+      src: "static/img/pc_4_2.png"
+    }
+  }), _vm._v(" "), !_vm.hasResult ? _c("div", {
+    staticClass: "content_4_two"
+  }, [_c("div", {
+    staticClass: "content_4_two_text_1"
+  }, [_vm._v("\n                            Видео обрабатывается\n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_4_two_text_2"
+  }, [_vm._v("\n                            Пожалуйста, подождите...\n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_4_two_text_3"
+  }, [_vm._v("\n                            Выполнено: " + _vm._s(_vm.percent) + "%\n                        ")])]) : _vm._e(), _vm._v(" "), _vm.hasResult ? _c("div", {
+    staticClass: "content_4_three"
+  }, [_c("div", {
+    staticClass: "content_4_three_text"
+  }, [_vm._v("\n                            Анализ успешно выполнен!\n                        ")]), _vm._v(" "), _c("a", {
+    staticClass: "content_4_three_button",
+    on: {
+      click: function click($event) {
+        return _vm.goToResult();
+      }
+    }
+  }, [_vm._v("\n                            Показать результаты\n                        ")])]) : _vm._e()])]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "transition"
-  }), _vm._v(" "), _vm._m(12), _vm._v(" "), _vm._m(13)]), _vm._v(" "), _vm._m(14)]);
+  }), _vm._v(" "), _vm._m(13), _vm._v(" "), _vm._m(14)]), _vm._v(" "), _c("div", {
+    staticClass: "mobile"
+  }, [_c("div", {
+    staticClass: "mobile_str_1"
+  }, [_vm._m(15), _vm._v(" "), _c("div", {
+    staticClass: "mobile_content_1"
+  }, [_c("img", {
+    staticClass: "mobile_content_1_header",
+    attrs: {
+      src: "static/img/mobile_2.png"
+    }
+  }), _vm._v(" "), _vm._m(16), _vm._v(" "), _c("div", {
+    staticClass: "mobile_content_1_text_2"
+  }, [_vm._v("\n                        Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                    ")]), _vm._v(" "), _c("img", {
+    staticClass: "mobile_content_1_img",
+    attrs: {
+      src: "static/img/mobile_circles.png"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "mobile_content_1_text_3"
+  }, [_vm._v("\n                        Стало интересно? Заходи и будь с нами!\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "mobile_content_1_button"
+  }, [_c("button", {
+    staticClass: "mobile_content_1_button_content",
+    on: {
+      click: function click($event) {
+        return _vm.toFree(this);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "mobile_content_1_button_content_text"
+  }, [_vm._v("\n                                Попробовать бесплатно\n                            ")]), _vm._v(" "), _vm._m(17)])])])]), _vm._v(" "), _vm._m(18), _vm._v(" "), _vm._m(19), _vm._v(" "), _vm._m(20), _vm._v(" "), _c("div", {
+    staticClass: "mobile_5_content_text_2"
+  }, [_vm._v("\n                Полная версия продукта будет выпущена в 2023 году в формате приложения на платформы iOS и Android, а также операционные системы iMac и Windows.\n            ")]), _vm._v(" "), _c("img", {
+    staticClass: "mobile_5_circles_2",
+    attrs: {
+      src: "static/img/mobile_circles.png"
+    }
+  }), _vm._v(" "), _vm._m(21), _vm._v(" "), _vm._m(22)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "all_str_1"
-  }, [_c("div", {
-    staticClass: "content"
-  }, [_c("div", {
-    staticClass: "content_header"
-  }, [_vm._v("Что есть эмоция?")]), _vm._v(" "), _c("div", {
-    staticClass: "content_text_1",
-    attrs: {
-      id: "text_1"
-    }
-  }, [_vm._v("\n                        Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функциональьного состояния организма. Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                    ")]), _vm._v(" "), _c("div", {
-    staticClass: "content_text_2"
-  }, [_vm._v("\n                        Стало интересно? Заходи и будь с нами!\n                    ")]), _vm._v(" "), _c("button", {
-    staticClass: "content_button"
-  }, [_c("div", {
-    staticClass: "content_button_text"
-  }, [_vm._v("Попробовать бесплатно")]), _vm._v(" "), _c("div", {
     staticClass: "content_button_img"
   }, [_c("div", {
     staticClass: "right-arrow"
-  })])])]), _vm._v(" "), _c("div", {
-    staticClass: "transition"
   })]);
 }, function () {
   var _vm = this,
@@ -5802,8 +5919,6 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "circles"
-  }, [_c("div", {
     staticClass: "circle_1_4"
   }, [_c("div", {
     staticClass: "circle_1_2"
@@ -5817,9 +5932,11 @@ var staticRenderFns = [function () {
     staticClass: "circle_3"
   }), _vm._v(" "), _c("div", {
     staticClass: "circle_4"
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "circle_5_6_7_header_4"
-  }, [_c("div", {
+  })])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "circle_5_6_7"
   }, [_c("div", {
     staticClass: "circle_5"
@@ -5827,9 +5944,7 @@ var staticRenderFns = [function () {
     staticClass: "circle_6"
   }), _vm._v(" "), _c("div", {
     staticClass: "circle_7"
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "header_4"
-  }, [_vm._v("\n                            Запустите AS.SYST прямо сейчас!\n                        ")])])]);
+  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -5963,10 +6078,6 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "mobile"
-  }, [_c("div", {
-    staticClass: "mobile_str_1"
-  }, [_c("div", {
     staticClass: "mobile_header"
   }, [_c("img", {
     staticClass: "mobile_home",
@@ -5985,14 +6096,11 @@ var staticRenderFns = [function () {
     staticClass: "mobile_header_logo_img_3"
   })])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_header_logo_text"
-  }, [_vm._v("AS.SYST")])]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_1"
-  }, [_c("img", {
-    staticClass: "mobile_content_1_header",
-    attrs: {
-      src: "static/img/mobile_2.png"
-    }
-  }), _vm._v(" "), _c("div", {
+  }, [_vm._v("AS.SYST")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_content_1_text_1"
   }, [_c("img", {
     staticClass: "mobile_content_1_text_1_img",
@@ -6001,26 +6109,19 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_1_text_1_text"
-  }, [_vm._v("\n                            Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функционального состояния организма.\n                        ")])]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_1_text_2"
-  }, [_vm._v("\n                        Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                    ")]), _vm._v(" "), _c("img", {
-    staticClass: "mobile_content_1_img",
-    attrs: {
-      src: "static/img/mobile_circles.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_1_text_3"
-  }, [_vm._v("\n                        Стало интересно? Заходи и будь с нами!\n                    ")]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_1_button"
-  }, [_c("button", {
-    staticClass: "mobile_content_1_button_content"
-  }, [_c("div", {
-    staticClass: "mobile_content_1_button_content_text"
-  }, [_vm._v("\n                                Попробовать бесплатно\n                            ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функционального состояния организма.\n                        ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_content_1_button_content_img"
   }, [_c("div", {
     staticClass: "mobile_right-arrow"
-  })])])])])]), _vm._v(" "), _c("div", {
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_str_2"
   }, [_c("div", {
     staticClass: "mobile_header_2"
@@ -6111,7 +6212,11 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_2_3_img_circle_5"
   })])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_3_text"
-  }, [_vm._v("\n                            Алгоритмы нейросети AS.SYST проанализируют Ваше видео и подготовят результат об эффективности проведённой работы.\n                        ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Алгоритмы нейросети AS.SYST проанализируют Ваше видео и подготовят результат об эффективности проведённой работы.\n                        ")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_str_3"
   }, [_c("div", {
     staticClass: "mobile_header_3"
@@ -6182,7 +6287,11 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_3_1_line_3"
   }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_1_arrow"
-  })])])])]), _vm._v(" "), _c("div", {
+  })])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_str_4"
   }, [_c("div", {
     staticClass: "mobile_content_3_circle"
@@ -6404,14 +6513,11 @@ var staticRenderFns = [function () {
     attrs: {
       src: "static/img/mobile_4.png"
     }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_5_content_text_2"
-  }, [_vm._v("\n                Полная версия продукта будет выпущена в 2023 году в формате приложения на платформы iOS и Android, а также операционные системы iMac и Windows.\n            ")]), _vm._v(" "), _c("img", {
-    staticClass: "mobile_5_circles_2",
-    attrs: {
-      src: "static/img/mobile_circles.png"
-    }
-  }), _vm._v(" "), _c("div", {
+  })])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_str_6"
   }, [_c("div", {
     staticClass: "mobile_6_header"
@@ -6503,13 +6609,17 @@ var staticRenderFns = [function () {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Отправить")])])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Отправить")])])])])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile_footer"
   }, [_c("div", {
     staticClass: "mobile_footer_text_1"
   }, [_vm._v("\n                    AS.SYST © 2022\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_footer_text_2"
-  }, [_vm._v("\n                    ООО “ААС”\n                ")])])]);
+  }, [_vm._v("\n                    ООО “ААС”\n                ")])]);
 }];
 render._withStripped = true;
 
