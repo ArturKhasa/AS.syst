@@ -18,22 +18,28 @@ class ResultController extends Controller
 
     public function index(Request $request)
     {
-//        $client = new \GuzzleHttp\Client();
-//        $response = $client->request('POST', 'http://127.0.0.1:80/predict', [
-//            'json' => [
-//                'filename'=>'C:/Users/Артур/PhpstormProjects/AS.syst/storage/app/public/videos/IMG_4635/IMG_4635.mp4',
-//                'fps' => 3
-//            ]
-//        ]);
-//
-//        $data = $response->getBody()->getContents();
-//
-        $data = file_get_contents(storage_path() . '/app/public/result.json');
+//        $data = file_get_contents(storage_path() . '/app/public/result.json');
+//        $result = json_decode($data, true);
 
-        $result = json_decode($data, true);
+        if($request->file('video')) {
+            $file = $request->file('video');
+            $extension = $file->getClientOriginalExtension();
 
+            $fileUrl = self::removeFileExtension($file->store('public/xui'));
+
+            $resultUrl = base_path() . '/storage/app/' .  $fileUrl . '.' . $extension;
+        };
+
+        $command = escapeshellcmd('python3' . ' ' . base_path() . '/predict.py' . ' ' . $resultUrl);
+        exec($command, $output);
+
+        $test = [];
+        foreach($output as $key => $out) {
+            $test[$key] = json_decode($out, true);
+        }
+
+        $result = json_decode($test[0], true);
         $this->getCountUsers($result);
-
 
         return [
             'result' => array_values($this->getAvg($result)),
@@ -80,5 +86,10 @@ class ResultController extends Controller
             self::NEUTRAL  => round(collect($fon[self::NEUTRAL])->avg(), 2) * 100,
             self::SURPRISE => round(collect($fon[self::SURPRISE])->avg(), 2) * 100
         ];
+    }
+
+    public static function removeFileExtension($fileName)
+    {
+        return substr($fileName, 0, strrpos($fileName,'.'));
     }
 }

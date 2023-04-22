@@ -5354,6 +5354,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
+  methods: {
+    setVideo: function setVideo() {
+      this.$refs.file_input.click();
+    },
+    sendVideo: function sendVideo() {
+      var file = this.$refs.file_input.files[0];
+      console.log(file);
+      var formData = new FormData();
+      formData.append('video', file);
+      axios.post('api/get', formData, {
+        headers: {
+          'Content-Type': 'video/mp4'
+        }
+      }).then(function (res) {
+        console.log(res.data);
+      });
+    }
+  },
   mounted: function mounted() {
     console.log('home');
   }
@@ -5381,7 +5399,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     loadCircle: function loadCircle() {
-      console.log('nu tutt');
       var ctx = this.$refs['circle_chart'].getContext('2d');
       var data = {
         datasets: [{
@@ -5536,24 +5553,86 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
+  return _c("div", [_c("div", {
+    staticClass: "all"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "all_str_2"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "header_2"
+  }, [_vm._v("Как работает AS.SYST?")]), _vm._v(" "), _c("div", {
+    staticClass: "content_2"
+  }, [_vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _c("svg", {
+    staticClass: "curl",
+    attrs: {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: "134",
+      height: "178",
+      viewBox: "0 0 134 178",
+      fill: "none"
+    }
+  }, [_c("path", {
+    attrs: {
+      "fill-rule": "evenodd",
+      "clip-rule": "evenodd",
+      d: "M76.6385 88.1277C78.7924 84.4874 80.0682 81.172 80.9221 78.5595C89.0104 53.5453 75.6559 36.1564 59.705 26.1483C55.4326 23.4637 48.0112 21.2142 41.7664 22.6287C37.3781 23.6205 33.564 26.3788 31.6244 31.8335C29.4924 37.7722 30.5552 44.6578 33.2141 51.2211C37.0533 60.7182 44.1973 69.5612 48.9699 73.7469C54.4761 78.5726 63.7071 84.8113 73.4527 89.3646C70.8936 93.0931 67.3606 97.0752 62.3661 100.907C60.1505 102.62 57.326 103.891 54.2378 104.745C53.1942 99.1919 51.1887 93.7451 48.1646 88.6796C45.6173 84.4265 38.8111 76.889 32.0808 73.6152C27.2747 71.283 22.5095 71.1581 19.1207 75.2447C14.9179 80.3267 14.8772 85.8654 16.9074 90.9256C19.7628 98.0529 26.8814 104.17 31.4074 106.253C36.6746 108.672 45.1184 109.186 52.6259 107.547C55.3292 126.629 46.3582 146.559 29.0309 154.955C28.5172 155.212 28.2223 155.924 28.37 156.546C28.5354 157.172 29.0996 157.473 29.6133 157.217C47.9453 148.328 57.4674 127.249 54.6266 107.051C57.9123 106.133 60.9392 104.774 63.3076 102.946C68.8074 98.7209 72.6303 94.3172 75.3389 90.2224C77.1792 91.0357 79.0334 91.7822 80.8867 92.4434C89.2083 95.4186 97.3512 96.5857 103.35 94.2232C117.213 88.766 123.879 73.6509 124.759 57.7321C125.627 41.9655 120.804 25.4666 111.876 17.0546C111.459 16.6628 110.825 16.7893 110.472 17.3389C110.118 17.8887 110.163 18.6516 110.58 19.0431C119.076 27.0478 123.614 42.7851 122.777 57.7851C121.952 72.633 115.83 86.8109 102.909 91.903C97.1937 94.1411 89.5047 92.9183 81.5946 90.0918C79.9473 89.5033 78.2961 88.8447 76.6385 88.1277ZM52.2375 105.239C51.2281 100.054 49.3503 94.9705 46.5156 90.2362C44.0919 86.1872 37.6331 79.0191 31.2031 75.8972C27.2179 73.9618 23.2562 73.5154 20.4527 76.9112C17.0164 81.0495 17.0573 85.5712 18.7103 89.694C21.353 96.3354 28.0281 102.013 32.2515 103.955C37.1981 106.231 45.1611 106.754 52.2375 105.239ZM74.7837 87.2958C76.9666 83.6934 78.2362 80.408 79.0813 77.8379C86.7536 54.1218 73.7978 37.8337 58.6791 28.3456C54.7007 25.843 47.7889 23.7132 41.9513 25.03C38.2964 25.8617 35.0539 28.0842 33.4287 32.6427C31.5167 37.9637 32.6244 44.0975 35.0009 49.9773C38.7061 59.1427 45.6192 67.677 50.2195 71.7154C55.7256 76.5416 65.0078 82.7999 74.7837 87.2958Z",
+      fill: "#1B1C37"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      "fill-rule": "evenodd",
+      "clip-rule": "evenodd",
+      d: "M30.1639 155.553C30.7547 154.479 32.4463 151.381 32.6922 150.905C33.3743 149.568 33.571 148.796 33.7006 147.991C33.7978 147.344 33.8279 146.664 34.1302 145.47C34.3031 144.813 33.9958 144.161 33.4726 144.018C32.9493 143.875 32.4012 144.297 32.2284 144.954C31.967 146.039 31.8767 146.743 31.8041 147.361C31.7123 148.072 31.6172 148.62 31.0344 149.745C30.7548 150.294 28.9427 153.173 28.3214 154.662C27.9951 155.437 27.9578 156.062 28.0265 156.354C28.1244 156.771 28.3683 157.196 28.8122 157.544C29.3837 157.988 30.4063 158.389 31.5412 158.871C32.6091 159.321 33.8059 159.859 34.7795 160.675C35.5943 161.368 36.2393 162.259 36.3777 163.549C36.4442 164.207 36.9288 164.626 37.474 164.485C38.0192 164.344 38.4118 163.693 38.3453 163.035C38.1584 161.088 37.2357 159.671 35.9969 158.622C34.8989 157.695 33.5553 157.064 32.3344 156.552C31.6062 156.242 30.9236 155.979 30.4083 155.708C30.325 155.665 30.2444 155.609 30.1639 155.553Z",
+      fill: "#1B1C37"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "transition"
+  })]), _vm._v(" "), _vm._m(8), _vm._v(" "), _c("div", {
+    staticClass: "all_str_4"
+  }, [_vm._m(9), _vm._v(" "), _c("div", {
+    staticClass: "content_4"
+  }, [_c("div", {
+    staticClass: "content_4_one"
+  }, [_c("div", {
+    staticClass: "content_4_one_1"
+  }, [_vm._m(10), _vm._v(" "), _c("div", {
+    staticClass: "content_4_one_1_text"
+  }, [_c("div", {
+    staticClass: "content_4_one_1_text_1",
+    on: {
+      click: _vm.setVideo
+    }
+  }, [_vm._v("\n                                    Выберите файл\n                                    "), _c("input", {
+    ref: "file_input",
+    attrs: {
+      type: "file",
+      hidden: ""
+    },
+    on: {
+      change: _vm.sendVideo
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "content_4_one_1_text_2"
+  }, [_vm._v("\n                                    или перетащите его сюда\n                                ")])])]), _vm._v(" "), _vm._m(11)])])]), _vm._v(" "), _c("div", {
+    staticClass: "transition"
+  }), _vm._v(" "), _vm._m(12), _vm._v(" "), _vm._m(13)]), _vm._v(" "), _vm._m(14)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", {
-    staticClass: "all"
-  }, [_c("div", {
+  return _c("div", {
     staticClass: "all_str_1"
   }, [_c("div", {
     staticClass: "content"
   }, [_c("div", {
     staticClass: "content_header"
   }, [_vm._v("Что есть эмоция?")]), _vm._v(" "), _c("div", {
-    staticClass: "content_text_1"
-  }, [_vm._v("\n                    Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функциональьного состояния организма. Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_text_1",
+    attrs: {
+      id: "text_1"
+    }
+  }, [_vm._v("\n                        Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функциональьного состояния организма. Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "content_text_2"
-  }, [_vm._v("\n                    Стало интересно? Заходи и будь с нами!\n                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Стало интересно? Заходи и будь с нами!\n                    ")]), _vm._v(" "), _c("button", {
     staticClass: "content_button"
   }, [_c("div", {
     staticClass: "content_button_text"
@@ -5563,35 +5642,144 @@ var staticRenderFns = [function () {
     staticClass: "right-arrow"
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "transition"
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "all_str_2"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "circles_3"
   }, [_c("div", {
-    staticClass: "header_2"
-  }, [_vm._v("Как работает AS.SYST?")]), _vm._v(" "), _c("div", {
-    staticClass: "content_2"
+    staticClass: "circle_3_1"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_3"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_5"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_6"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_7"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_8"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_0"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "block_2_circles"
   }, [_c("div", {
+    staticClass: "block_2_circle_1"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_2_circle_2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_2_circle_3"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "block_1"
-  }, [_c("div", {
+  }, [_c("img", {
+    staticClass: "block_1_img",
+    attrs: {
+      src: "static/img/mobile_5.png"
+    }
+  }), _vm._v(" "), _c("div", {
     staticClass: "block_1_header"
-  }, [_vm._v("\n                        1. Снимите видео\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            1. Снимите видео\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "block_1_text"
-  }, [_vm._v("\n                        Для этого Вам понадобится камера, будь то мобильный телефон или любое другое устройство. Также, не забудьте про хорошее освещение!\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Для этого Вам понадобится камера, будь то мобильный телефон или любое другое устройство. Также, не забудьте про хорошее освещение!\n                        ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "block_2_circles_2"
+  }, [_c("div", {
+    staticClass: "block_3_circles_2_1"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_2_2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_2_3"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_2_4"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "block_2"
-  }, [_c("div", {
+  }, [_c("img", {
+    staticClass: "block_2_img",
+    attrs: {
+      src: "static/img/mobile_6.png"
+    }
+  }), _vm._v(" "), _c("div", {
     staticClass: "block_2_header"
-  }, [_vm._v("\n                        2. Загрузите видео в AS.SYST\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            2. Загрузите видео в AS.SYST\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "block_2_text"
-  }, [_vm._v("\n                        Авторизуйтесь на платформе, используя сайт или мобильное приложение, войдите в свой личный кабинет и загрузите видео.\n                    ")])]), _vm._v(" "), _c("div", {
-    staticClass: "block_3"
+  }, [_vm._v("\n                            Авторизуйтесь на платформе, используя сайт или мобильное приложение, войдите в свой личный кабинет и загрузите видео.\n                        ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "block_3_circles_3"
   }, [_c("div", {
+    staticClass: "block_3_circles_3_1"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_3"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_4"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_5"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_6"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_7"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "block_3_circles_3_8"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "block_3"
+  }, [_c("img", {
+    staticClass: "block_3_img",
+    attrs: {
+      src: "static/img/mobile_7.png"
+    }
+  }), _vm._v(" "), _c("div", {
     staticClass: "block_3_header"
-  }, [_vm._v("\n                        3. Запустите анализ\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            3. Запустите анализ\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "block_3_text"
-  }, [_vm._v("\n                        Алгоритмы нейросети AS.SYST проанализируют Ваше видео и подготовят результат об эффективности проведённой работы.\n                    ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "transition"
-  })]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Алгоритмы нейросети AS.SYST проанализируют Ваше видео и подготовят результат об эффективности проведённой работы.\n                        ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "all_str_3"
   }, [_c("div", {
+    staticClass: "circles_3"
+  }, [_c("div", {
+    staticClass: "circle_3_1"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_3"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_5"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_6"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_7"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "circle_3_8"
+  })]), _vm._v(" "), _c("div", {
     staticClass: "header_3"
   }, [_vm._v("В чём преимущества AS.SYST?")]), _vm._v(" "), _c("div", {
     staticClass: "content_1"
@@ -5599,19 +5787,21 @@ var staticRenderFns = [function () {
     staticClass: "block_3_text_1_3"
   }, [_c("div", {
     staticClass: "block_3_text_1"
-  }, [_vm._v("\n                        1. Высококачественная аналитика поведения сотрудников без применения Вами дополнительных усилий.\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            1. Высококачественная аналитика поведения сотрудников без применения Вами дополнительных усилий.\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "block_3_text_3"
-  }, [_vm._v("\n                        3. Создание базы рекомендаций общего психологического и профессионального характера социологами и психологами.\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            3. Создание базы рекомендаций общего психологического и профессионального характера социологами и психологами.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "block_3_text_2_4"
   }, [_c("div", {
     staticClass: "block_3_text_2"
-  }, [_vm._v("\n                        2. Устранение влияния субъективности при оценке поведения сотрудников за счёт стандартизации оценки.\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            2. Устранение влияния субъективности при оценке поведения сотрудников за счёт стандартизации оценки.\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "block_3_text_4"
-  }, [_vm._v("\n                        4. Инновационный подход к поиску и решению проблемы продуктивности в коллективной работе.\n                    ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            4. Инновационный подход к поиску и решению проблемы продуктивности в коллективной работе.\n                        ")])])]), _vm._v(" "), _c("div", {
     staticClass: "transition"
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "all_str_4"
-  }, [_c("div", {
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "circles"
   }, [_c("div", {
     staticClass: "circle_1_4"
@@ -5639,32 +5829,34 @@ var staticRenderFns = [function () {
     staticClass: "circle_7"
   })]), _vm._v(" "), _c("div", {
     staticClass: "header_4"
-  }, [_vm._v("\n                        Запустите AS.SYST прямо сейчас!\n                    ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "content_4"
-  }, [_c("div", {
-    staticClass: "content_4_two_three"
-  }, [_c("div", {
-    staticClass: "content_4_two_three_img",
-    attrs: {
-      id: "content_4_two_three"
-    }
+  }, [_vm._v("\n                            Запустите AS.SYST прямо сейчас!\n                        ")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "content_4_one_1_img"
   }, [_c("img", {
-    staticClass: "img_pc_4_2",
+    staticStyle: {
+      width: "4.3655vw"
+    },
     attrs: {
-      src: "static/img/pc_4_2.png"
+      src: "static/img/pc_4.png"
     }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_4_three"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "content_4_one_2"
   }, [_c("div", {
-    staticClass: "content_4_three_text"
-  }, [_vm._v("\n                                Анализ успешно выполнен!\n                            ")]), _vm._v(" "), _c("a", {
-    staticClass: "content_4_three_button",
-    attrs: {
-      href: "results.html"
-    }
-  }, [_vm._v("\n                                Показать результаты\n                            ")])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "transition"
-  }), _vm._v(" "), _c("div", {
+    staticClass: "content_4_one_2_header"
+  }, [_vm._v("\n                                Ограничения по загрузке:\n                            ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_4_one_2_text"
+  }, [_c("ul", [_c("li", [_vm._v("\n                                        Формат - mp4, wav, др.;\n                                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                                        Продолжительность - от 10 секунд до 3 минут;\n                                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                                        Объём- не более 500 Мб.\n                                    ")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "all_str_5"
   }, [_c("div", {
     staticClass: "header_5"
@@ -5674,130 +5866,103 @@ var staticRenderFns = [function () {
     staticClass: "text_5"
   }, [_c("div", {
     staticClass: "text_5_1"
-  }, [_vm._v("\n                        Надеемся, что Вам понравилось протестировать предварительную демонстрационную версию AS.SYST.\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Надеемся, что Вам понравилось протестировать предварительную демонстрационную версию AS.SYST.\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "text_5_2"
-  }, [_vm._v("\n                        Полная версия продукта будет выпущена в 2023 году в формате приложения на платформы iOS и Android, а также операционные системы iMac и Windows.\n                    ")])]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                            Полная версия продукта будет выпущена в 2023 году в формате приложения на платформы iOS и Android, а также операционные системы iMac и Windows.\n                        ")])]), _vm._v(" "), _c("img", {
     staticClass: "img_5",
     attrs: {
       width: "31.61375vw",
       src: "static/img/pc_5.jpg"
     }
   })]), _vm._v(" "), _c("div", {
-    staticClass: "form_block"
+    staticClass: "form_block",
+    staticStyle: {
+      margin: "5vw 5vw 5vw 0"
+    }
   }, [_c("form", {
     attrs: {
       method: "post"
     }
   }, [_c("div", {
-    staticClass: "tab_name_email"
+    staticClass: "row"
   }, [_c("div", {
-    staticClass: "tab_name"
+    staticClass: "col-lg-6"
   }, [_c("div", {
-    staticClass: "tab_name_header"
-  }, [_vm._v("\n                                Ваше имя\n                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "tab_name_form",
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control mt-3 tab_form",
     attrs: {
-      name: "name",
       type: "text",
-      placeholder: "Введите своё имя"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "tab_email"
-  }, [_c("div", {
-    staticClass: "tab_email_header"
-  }, [_vm._v("\n                                Ваша электронная почта\n                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "tab_email_form",
-    attrs: {
-      name: "email",
-      type: "text",
-      placeholder: "Введите Вашу электронную почту"
+      placeholder: "Введите своё имя",
+      required: ""
     }
   })])]), _vm._v(" "), _c("div", {
-    staticClass: "tab_appeal_phone"
+    staticClass: "col-lg-6"
   }, [_c("div", {
-    staticClass: "tab_appeal"
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control mt-3 tab_form",
+    attrs: {
+      type: "text",
+      placeholder: "Введите свою фамилию",
+      required: ""
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
   }, [_c("div", {
-    staticClass: "tab_appeal_header"
-  }, [_vm._v("\n                                Ваше обращение\n                            ")]), _vm._v(" "), _c("div", {
-    staticClass: "tab_appeal_header_1",
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control mt-3 tab_form",
+    attrs: {
+      type: "email",
+      placeholder: "Введите Вашу электронную почту",
+      required: ""
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control mt-3 tab_form",
+    attrs: {
+      type: "number",
+      placeholder: "Введите Ваш номер телефона",
+      required: ""
+    }
+  })])]), _vm._v(" "), _c("div", {
     staticStyle: {
       display: "flex",
-      "flex-direction": "column"
+      "flex-direction": "column",
+      "justify-content": "center"
     }
   }, [_c("textarea", {
-    staticClass: "tab_appeal_form",
+    staticClass: "form-control mt-3 tab_form",
     attrs: {
-      id: "text",
-      name: "appeal",
-      placeholder: "Введите Ваш вопрос или сообщение"
+      placeholder: "Введите Ваш вопрос или обращение",
+      id: "",
+      cols: "30",
+      rows: "10"
     }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "tab_appeal_header_2"
-  }, [_c("img", {
-    staticClass: "link_1",
-    attrs: {
-      onclick: "openUrlPopup()",
-      src: "static/img/link_1.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "link_2",
-    attrs: {
-      src: "static/img/link_2.png",
-      onclick: "toggleBold()"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "link_3",
-    attrs: {
-      src: "static/img/link_3.png",
-      onclick: "toggleUnderline()"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "link_4",
-    attrs: {
-      onclick: "toggleItalic()",
-      src: "static/img/link_4.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "link_5",
-    attrs: {
-      onclick: "addBulletPoint()",
-      src: "static/img/link_5.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "link_6",
-    attrs: {
-      src: "static/img/link_6.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "link_7",
-    attrs: {
-      src: "static/img/link_7.png"
-    }
-  })])])]), _vm._v(" "), _c("div", {
-    staticClass: "tab_phone_button"
-  }, [_c("div", {
-    staticClass: "tab_phone"
-  }, [_c("div", {
-    staticClass: "tab_phone_header"
-  }, [_vm._v("\n                                    Ваш номер телефона\n                                ")]), _vm._v(" "), _c("input", {
-    staticClass: "tab_phone_form",
-    attrs: {
-      name: "phone",
-      type: "text",
-      placeholder: "Введите Ваш номер телефона"
-    }
-  })]), _vm._v(" "), _c("button", {
-    staticClass: "tab_button",
+  }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary mt-3 tab_button",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                                Отправить\n                            ")])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Отправить")])])])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "footer"
   }, [_c("div", {
     staticClass: "footer_text_1"
-  }, [_vm._v("\n                AS.SYST © 2022\n            ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    AS.SYST © 2022\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "footer_text_2"
-  }, [_vm._v("\n                ООО “ААС”\n            ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    ООО “ААС”\n                ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "mobile"
   }, [_c("div", {
     staticClass: "mobile_str_1"
@@ -5836,22 +6001,22 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_1_text_1_text"
-  }, [_vm._v("\n                        Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функционального состояния организма.\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Эмоция — выразительное движение лица и голоса в сопровождении душевных переживаний на фоне смены функционального состояния организма.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_1_text_2"
-  }, [_vm._v("\n                    Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                ")]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                        Платформа AS.SYST позволяет оценить эффективность командной работы, эмоциональный фон и гибкие навыки участников коллективного рабочего процесса.\n                    ")]), _vm._v(" "), _c("img", {
     staticClass: "mobile_content_1_img",
     attrs: {
       src: "static/img/mobile_circles.png"
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_1_text_3"
-  }, [_vm._v("\n                    Стало интересно? Заходи и будь с нами!\n                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Стало интересно? Заходи и будь с нами!\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_1_button"
-  }, [_c("div", {
+  }, [_c("button", {
     staticClass: "mobile_content_1_button_content"
   }, [_c("div", {
     staticClass: "mobile_content_1_button_content_text"
-  }, [_vm._v("\n                            Попробовать бесплатно\n                        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                Попробовать бесплатно\n                            ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_1_button_content_img"
   }, [_c("div", {
     staticClass: "mobile_right-arrow"
@@ -5859,13 +6024,13 @@ var staticRenderFns = [function () {
     staticClass: "mobile_str_2"
   }, [_c("div", {
     staticClass: "mobile_header_2"
-  }, [_vm._v("\n                Принцип работы AS.SYST\n            ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Принцип работы AS.SYST\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2"
   }, [_c("div", {
     staticClass: "mobile_content_2_1"
   }, [_c("div", {
     staticClass: "mobile_content_2_1_header"
-  }, [_vm._v("\n                        1. Снимите видео\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            1. Снимите видео\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_1_img"
   }, [_c("img", {
     staticClass: "mobile_content_2_1_img_photo",
@@ -5894,13 +6059,13 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_2_1_text"
   }, [_c("div", {
     staticClass: "mobile_content_2_1_text_1"
-  }, [_vm._v("\n                            Для этого Вам понадобится камера, будь то мобильный телефон или любое другое устройство.\n                        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                Для этого Вам понадобится камера, будь то мобильный телефон или любое другое устройство.\n                            ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_1_text_2"
-  }, [_vm._v("\n                            Также, не забудьте про хорошее освещение!\n                        ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                Также, не забудьте про хорошее освещение!\n                            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_2"
   }, [_c("div", {
     staticClass: "mobile_content_2_2_header"
-  }, [_vm._v("\n                        2. Загрузите видео в AS.SYST\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            2. Загрузите видео в AS.SYST\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_2_img"
   }, [_c("img", {
     staticClass: "mobile_content_2_2_img_photo",
@@ -5921,11 +6086,11 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_2_2_img_circle_5"
   })])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_2_text"
-  }, [_vm._v("\n                        Авторизуйтесь на платформе, используя сайт или мобильное приложение,  войдите в свой личный кабинет и загрузите видео.\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Авторизуйтесь на платформе, используя сайт или мобильное приложение,  войдите в свой личный кабинет и загрузите видео.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_3"
   }, [_c("div", {
     staticClass: "mobile_content_2_3_header"
-  }, [_vm._v("\n                        3. Запустите анализ\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            3. Запустите анализ\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_3_img"
   }, [_c("img", {
     staticClass: "mobile_content_2_3_img_photo",
@@ -5946,7 +6111,7 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_2_3_img_circle_5"
   })])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_2_3_text"
-  }, [_vm._v("\n                        Алгоритмы нейросети AS.SYST проанализируют Ваше видео и подготовят результат об эффективности проведённой работы.\n                    ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Алгоритмы нейросети AS.SYST проанализируют Ваше видео и подготовят результат об эффективности проведённой работы.\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_str_3"
   }, [_c("div", {
     staticClass: "mobile_header_3"
@@ -5978,24 +6143,18 @@ var staticRenderFns = [function () {
     staticClass: "mobile_header_3_circle_12"
   })]), _vm._v(" "), _c("div", {
     staticClass: "mobile_header_3_text"
-  }, [_vm._v("\n                    Преимущества AS.SYST\n                ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Преимущества AS.SYST\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3"
   }, [_c("div", {
     staticClass: "mobile_content_3_1"
   }, [_c("div", {
     staticClass: "mobile_content_3_1_text"
-  }, [_vm._v("\n                        1. Высокоточная аналитика поведения сотрудников без применения Вами дополнительных усилий.\n                    ")]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_3_1_img_bg"
-  }, [_c("img", {
+  }, [_vm._v("\n                            1. Высокоточная аналитика поведения сотрудников без применения Вами дополнительных усилий.\n                        ")]), _vm._v(" "), _c("img", {
     staticClass: "mobile_content_3_1_img",
-    staticStyle: {
-      width: "6.67vw",
-      height: "6.67vw"
-    },
     attrs: {
-      src: "static/img/mobile_8.png"
+      src: "static/img/Ellipse 193.png"
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_1_1_circles"
   }, [_c("div", {
     staticClass: "mobile_content_3_1_1_circle_1"
@@ -6047,20 +6206,14 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_3_1_2_circle_8"
   })]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_2"
-  }, [_c("div", {
-    staticClass: "mobile_content_3_2_img_bg"
   }, [_c("img", {
     staticClass: "mobile_content_3_2_img",
-    staticStyle: {
-      width: "6.67vw",
-      height: "6.67vw"
-    },
     attrs: {
-      src: "static/img/mobile_9.png"
+      src: "static/img/Ellipse 194.png"
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_2_text"
-  }, [_vm._v("\n                        2. Устранение влияния субъективности при оценке поведения сотрудников за счёт стандартизации оценки.\n                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            2. Устранение влияния субъективности при оценке поведения сотрудников за счёт стандартизации оценки.\n                        ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_2_1_circles"
   }, [_c("div", {
     staticClass: "mobile_content_3_2_1_circle_1"
@@ -6110,18 +6263,12 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_3_3"
   }, [_c("div", {
     staticClass: "mobile_content_3_3_text"
-  }, [_vm._v("\n                        3. Создание базы рекомендаций общего психологического и профессионального характера социологами и психологами.\n                    ")]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_3_3_img_bg"
-  }, [_c("img", {
+  }, [_vm._v("\n                            3. Создание базы рекомендаций общего психологического и профессионального характера социологами и психологами.\n                        ")]), _vm._v(" "), _c("img", {
     staticClass: "mobile_content_3_3_img",
-    staticStyle: {
-      width: "6.67vw",
-      height: "6.67vw"
-    },
     attrs: {
-      src: "static/img/mobile_10.png"
+      src: "static/img/Ellipse 195.png"
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_3_1_circles"
   }, [_c("div", {
     staticClass: "mobile_content_3_3_1_circle_1"
@@ -6175,20 +6322,14 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_3_3_2_circles"
   })]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_4"
-  }, [_c("div", {
-    staticClass: "mobile_content_3_4_img_bg"
   }, [_c("img", {
     staticClass: "mobile_content_3_4_img",
-    staticStyle: {
-      width: "6.67vw",
-      height: "6.67vw"
-    },
     attrs: {
-      src: "static/img/mobile_11.png"
+      src: "static/img/Ellipse 196.png"
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_3_4_text"
-  }, [_vm._v("\n                        4. Инновационный подход к поиску и решению проблемы продуктивности в коллективной работе.\n                    ")]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                            4. Инновационный подход к поиску и решению проблемы продуктивности в коллективной работе.\n                        ")]), _vm._v(" "), _c("img", {
     staticClass: "mobile_content_3_4_circles",
     staticStyle: {
       width: "100%",
@@ -6199,7 +6340,7 @@ var staticRenderFns = [function () {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "mobile_header_4"
-  }, [_vm._v("\n                    Запустите AS.SYST прямо сейчас! *\n                ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Запустите AS.SYST прямо сейчас! *\n                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_content_4"
   }, [_c("div", {
     staticClass: "mobile_content_4_two_three"
@@ -6217,14 +6358,12 @@ var staticRenderFns = [function () {
     staticClass: "mobile_content_4_three"
   }, [_c("div", {
     staticClass: "mobile_content_4_three_text"
-  }, [_vm._v("\n                                Анализ успешно выполнен!\n                            ")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("\n                                    Анализ успешно выполнен!\n                                ")]), _vm._v(" "), _c("a", {
     staticClass: "mobile_content_4_three_button",
     attrs: {
       href: "results.html"
     }
-  }, [_vm._v("\n                                Показать результаты\n                            ")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_content_4_one_3"
-  }, [_vm._v("\n                    * демострационный вариант AS.SYST\n                ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    Показать результаты\n                                ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_str_5"
   }, [_c("div", {
     staticClass: "mobile_5_circles"
@@ -6258,16 +6397,16 @@ var staticRenderFns = [function () {
     staticClass: "mobile_5_circle_13"
   })]), _vm._v(" "), _c("div", {
     staticClass: "mobile_5_header"
-  }, [_vm._v("\n                    Что теперь?\n                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                        Что теперь?\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_5_content_text_1"
-  }, [_vm._v("\n                    Надеемся, что Вам понравилось протестировать предварительную демонстрационную версию AS.SYST.\n                ")]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                        Надеемся, что Вам понравилось протестировать предварительную демонстрационную версию AS.SYST.\n                    ")]), _vm._v(" "), _c("img", {
     staticClass: "mobile_5_content_img",
     attrs: {
       src: "static/img/mobile_4.png"
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_5_content_text_2"
-  }, [_vm._v("\n            Полная версия продукта будет выпущена в 2023 году в формате приложения на платформы iOS и Android, а также операционные системы iMac и Windows.\n        ")]), _vm._v(" "), _c("img", {
+  }, [_vm._v("\n                Полная версия продукта будет выпущена в 2023 году в формате приложения на платформы iOS и Android, а также операционные системы iMac и Windows.\n            ")]), _vm._v(" "), _c("img", {
     staticClass: "mobile_5_circles_2",
     attrs: {
       src: "static/img/mobile_circles.png"
@@ -6276,118 +6415,101 @@ var staticRenderFns = [function () {
     staticClass: "mobile_str_6"
   }, [_c("div", {
     staticClass: "mobile_6_header"
-  }, [_vm._v("\n                Остались вопросы?\n            ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Остались вопросы?\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_6_content"
   }, [_c("div", {
     staticClass: "mobile_6_content_text"
-  }, [_vm._v("\n                    Заполните форму снизу, и мы обязательно вам ответим.\n                ")]), _vm._v(" "), _c("div", {
-    staticClass: "form_block_mobile"
+  }, [_vm._v("\n                        Заполните форму снизу, и мы обязательно вам ответим.\n                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "form_block",
+    staticStyle: {
+      margin: "5vw 5vw 5vw 0"
+    }
   }, [_c("form", {
     attrs: {
       method: "post"
     }
   }, [_c("div", {
-    staticClass: "mobile_tab_name"
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-6"
   }, [_c("div", {
     staticClass: "mobile_tab_header"
-  }, [_vm._v("\n                                Ваше имя\n                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "mobile_tab_name_form",
+  }, [_vm._v("\n                                        Ваше имя\n                                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control tab_form",
     attrs: {
-      name: "name",
       type: "text",
-      placeholder: "Введите своё имя..."
+      placeholder: "Введите своё имя",
+      required: ""
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_tab_appeal"
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
   }, [_c("div", {
     staticClass: "mobile_tab_header"
-  }, [_vm._v("\n                                Ваше обращение\n                            ")]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_tab_appeal_header_1"
-  }, [_c("div", {
-    staticClass: "mobile_tab_appeal_form"
-  }, [_c("textarea", {
-    staticClass: "mobile_tab_appeal_form_1",
+  }, [_vm._v("\n                                        Ваша фамилия\n                                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control tab_form",
     attrs: {
-      id: "text_1",
-      name: "appeal",
-      placeholder: "Задайте свой вопрос или поделитесь идеей..."
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "mobile_tab_appeal_header_2"
-  }, [_c("img", {
-    staticClass: "mobile_link_1",
-    attrs: {
-      onclick: "openUrlPopup_1()",
-      src: "static/img/link_1.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mobile_link_2",
-    attrs: {
-      src: "static/img/link_2.png",
-      onclick: "toggleBold_1()"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mobile_link_3",
-    attrs: {
-      src: "static/img/link_3.png",
-      onclick: "toggleUnderline_1()"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mobile_link_4",
-    attrs: {
-      onclick: "toggleItalic_1()",
-      src: "static/img/link_4.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mobile_link_5",
-    attrs: {
-      onclick: "addBulletPoint_1()",
-      src: "static/img/link_5.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mobile_link_6",
-    attrs: {
-      src: "static/img/link_6.png"
-    }
-  }), _vm._v(" "), _c("img", {
-    staticClass: "mobile_link_7",
-    attrs: {
-      src: "static/img/link_7.png"
-    }
-  })])])])]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_tab_email"
-  }, [_c("div", {
-    staticClass: "mobile_tab_header"
-  }, [_vm._v("\n                                Ваша электронная почта\n                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "mobile_tab_email_form",
-    attrs: {
-      name: "email",
       type: "text",
-      placeholder: "Введите адрес своей электронной почты..."
+      placeholder: "Введите свою фамилию",
+      required: ""
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "mobile_tab_phone"
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
   }, [_c("div", {
     staticClass: "mobile_tab_header"
-  }, [_vm._v("\n                                Ваш номер телефона\n                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "mobile_tab_phone_form",
+  }, [_vm._v("\n                                        Ваша электронная почта\n                                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control tab_form",
     attrs: {
-      name: "phone",
-      type: "text",
-      placeholder: "Введите номер своего телефона..."
+      type: "email",
+      placeholder: "Введите Вашу электронную почту",
+      required: ""
     }
-  })]), _vm._v(" "), _c("button", {
-    staticClass: "mobile_tab_button",
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6"
+  }, [_c("div", {
+    staticClass: "mobile_tab_header"
+  }, [_vm._v("\n                                        Ваш номер телефона\n                                    ")]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("input", {
+    staticClass: "form-control tab_form",
+    attrs: {
+      type: "number",
+      placeholder: "Введите Ваш номер телефона",
+      required: ""
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      display: "flex",
+      "flex-direction": "column",
+      "justify-content": "center"
+    }
+  }, [_c("div", {
+    staticClass: "mobile_tab_header"
+  }, [_vm._v("\n                                        Ваше обращение\n                                    ")]), _vm._v(" "), _c("textarea", {
+    staticClass: "form-control tab_form",
+    attrs: {
+      placeholder: "Введите Ваш вопрос или обращение",
+      id: "",
+      cols: "30",
+      rows: "10"
+    }
+  }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary mt-3 tab_button",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                            Отправить\n                        ")])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Отправить")])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "mobile_footer"
   }, [_c("div", {
     staticClass: "mobile_footer_text_1"
-  }, [_vm._v("\n                AS.SYST © 2022\n            ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    AS.SYST © 2022\n                ")]), _vm._v(" "), _c("div", {
     staticClass: "mobile_footer_text_2"
-  }, [_vm._v("\n                ООО “ААС”\n            ")])])])]);
+  }, [_vm._v("\n                    ООО “ААС”\n                ")])])]);
 }];
 render._withStripped = true;
 
@@ -6842,6 +6964,8 @@ var app = new Vue({
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+// require('script');
+
 try {
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 } catch (e) {}

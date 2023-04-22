@@ -1,33 +1,14 @@
-.block_3_header
-{
-    padding-right: 6.614vw;
-    padding-top: 3.25vw;
-    
-    font-weight: 600;
-    font-size: 3.306875vw;
-    line-height: 4.96032vw;
-    text-align: right;
-
-    background: linear-gradient(90.18deg, #35BE1F 0.12%, #6CD80E 102.61%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.block_3_text
-{
-    padding-top: 2.6455vw;
-    padding-bottom: 14.2196vw;
-}
-
 .all_str_3
 {
-    background-image: url(img/bg_3.jpg);
+    background-image: url(img/bg_3.png);
+    background-position: 6vw 17.857143vw;
+    background-size: auto 59.1931217vw;
 }
 
 .header_3
 {
     padding-left: 17.5926vw;
-    padding-top: 5.95238vw;
+    margin-top: -5.2248677vw;
 
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -38,11 +19,7 @@
     align-items: center;
     text-align: center;
 
-    background: linear-gradient(90deg, #82E80D 0%, #3DC21F 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+    color: #80dc17;
 }
 
 .block_3_text_1, .block_3_text_2, .block_3_text_3, .block_3_text_4{
@@ -97,4 +74,84 @@
 .block_3_text_4
 {
     padding-right: 13.5vw;
+}
+
+.circle_3_1, .circle_3_2, .circle_3_3, .circle_3_5, .circle_3_6, .circle_3_7, .circle_3_8
+{
+    border-radius: 50%;
+}
+
+.circle_3_1, .circle_3_6, .circle_3_7
+{
+    background: #82E80D;
+}
+
+.circle_3_2, .circle_3_3, .circle_3_5, .circle_3_8
+{
+    background: #82E80C;
+}
+
+.circle_3_1
+{
+    width: 7.275132vw;
+    height: 7.275132vw;
+}
+
+.circle_3_2, .circle_3_5
+{
+    width: 3.6375661vw;
+    height: 3.6375661vw;
+}
+
+.circle_3_3, .circle_3_8
+{
+    width: 0.909391534vw;
+    height: 0.909391534vw;
+}
+
+.circle_3_6, .circle_3_7
+{
+    width: 1.81878307vw;
+    height: 1.81878307vw;
+}
+
+.circle_3_1
+{
+    margin-top: -2.248677vw;
+    margin-left: -1.389vw;
+}
+
+.circle_3_2
+{
+    margin-top: -6.0185vw;
+    margin-left: 18.1878307vw;
+}
+
+.circle_3_3
+{
+    margin-top: -0.926vw;
+    margin-left: 26.852vw;
+}
+
+.circle_3_5
+{
+    margin-left: 7.804233vw;
+}
+
+.circle_3_6
+{
+    margin-top: -3.306878vw;
+    margin-left: 14.2195767vw;
+}
+
+.circle_3_7
+{
+    margin-top: 3.968254vw;
+    margin-left: 6.878307vw;
+}
+
+.circle_3_8
+{
+    margin-top: 0.9920635vw;
+    margin-left: 1.7857143vw;
 }

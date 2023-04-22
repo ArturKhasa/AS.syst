@@ -35,7 +35,7 @@
         width: 12.820512vw;
 
         padding-top: 16.410256vw;
-        padding-left: 37.179487vw;
+        padding-left: 39.179487vw;
         padding-right: 37.179487vw;
     }
 
@@ -49,9 +49,7 @@
 
         color: #FFFFFF;
 
-        padding-left: 27.948718vw;
-        padding-right: 27.948718vw;
-        padding-bottom: 16.410256vw;
+        margin-top: 10.25641vw;
     }
 
     .mobile_content_4_one_2
@@ -80,7 +78,6 @@
 
     .mobile_content_4_one_2_header, .mobile_content_4_one_2_text, .mobile_content_4_one_3
     {
-        font-family: 'PT Sans', sans-serif;
         font-style: normal;
         line-height: 5.1282vw;
         text-align: center;
@@ -91,12 +88,14 @@
 
     .mobile_content_4_one_2_header
     {
+        font-family: 'PT Sans', sans-serif;
         font-weight: 700;
         font-size: 5.1282vw;
     }
 
     .mobile_content_4_one_2_text, .mobile_content_4_one_3
     {
+        font-family: 'PT Sans', sans-serif;
         font-weight: 400;
         font-size: 3.589743vw;
     }
@@ -123,8 +122,8 @@
     .mobile_img_pc_4_2
     {
         display: flex;
-        padding: 3.589743vw;
-        width: 75.897436vw;
+        padding: 2.589743vw;
+        width: 86.897436vw;
         height: 75.897436vw;
         justify-content: center;
         align-items: center;
@@ -157,7 +156,7 @@
     {
         font-size: 3.589743vw;
 
-        margin-left: 28.37565vw;
+        margin-left: 23.37565vw;
         margin-top: 2vw;
     }
 
@@ -166,7 +165,7 @@
         font-size: 3.589743vw;
 
         margin-top: 15.9365vw;    
-        margin-left: 32.6905vw;
+        margin-left: 31.6905vw;
     }
 
     .mobile_content_4_two_three
@@ -191,14 +190,14 @@
 
     .mobile_content_4_three_text
     {
-        font-family: 'Sans', sans-serif;
+        font-family: 'PT Sans', sans-serif;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 3.589743vw;
 
         color: #FFFFFF;  
 
-        margin-left: 20.24075vw;
+        margin-left: 22.24075vw;
         margin-top: 34.2619vw;
     }
 
@@ -207,9 +206,9 @@
         background: #50CD19;
         border-radius: 1.32275vw;
 
-        font-family: 'Sans', sans-serif;
+        font-family: 'PT Sans', sans-serif;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 2.564102vw;
         text-decoration: none;
 
