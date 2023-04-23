@@ -66,10 +66,13 @@
                         <div class="content_1_main_video_text">
                             Предварительный просмотр
                         </div>
-                        <img class="content_1_main_video_1" src="static/imgs/pc_1.png">
-                        <video>
-                            <source></source>
+<!--                        <img class="content_1_main_video_1" src="static/imgs/pc_1.png">-->
+                        <video :src="video" class="content_1_main_video_1" controls>
+                            <p>Ваш браузер не поддерживает HTML5 видео. Используйте <a :href="video">ссылку на видео</a> для доступа.</p>
                         </video>
+<!--                        <video>-->
+<!--                            <source></source>-->
+<!--                        </video>-->
                     </div>
                 </div>
             </div>
@@ -244,48 +247,48 @@
                         </div>
                         <div class="content_2_two_2_main">
                             <div class="content_2_two_2_main_1">
-                                <img class="content_2_two_2_main_img" src="static/imgs/member_1.png">
+                                <img class="content_2_two_2_main_img" :src="videoImage">
                                 <div class="content_2_two_2_main_text">
                                     Участник 1
                                 </div>
                             </div>
-                            <div class="content_2_two_2_main_2">
-                                <img class="content_2_two_2_main_img" src="static/imgs/member_2.png">
-                                <div class="content_2_two_2_main_text">
-                                    Участник 2
-                                </div>
-                            </div>
-                            <div class="content_2_two_2_main_3">
-                                <img class="content_2_two_2_main_img" src="static/imgs/member_3.png">
-                                <div class="content_2_two_2_main_text">
-                                    Участник 3
-                                </div>
-                            </div>
-                            <div class="content_2_two_2_main_4">
-                                <img class="content_2_two_2_main_img" src="static/imgs/member_4.png">
-                                <div class="content_2_two_2_main_text">
-                                    Участник 4
-                                </div>
-                            </div>
-                            <div class="content_2_two_2_main_5">
-                                <img class="content_2_two_2_main_img" src="static/imgs/member_5.png">
-                                <div class="content_2_two_2_main_text">
-                                    Участник 5
-                                </div>
-                            </div>
+<!--                            <div class="content_2_two_2_main_2">-->
+<!--                                <img class="content_2_two_2_main_img" src="static/imgs/member_2.png">-->
+<!--                                <div class="content_2_two_2_main_text">-->
+<!--                                    Участник 2-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="content_2_two_2_main_3">-->
+<!--                                <img class="content_2_two_2_main_img" src="static/imgs/member_3.png">-->
+<!--                                <div class="content_2_two_2_main_text">-->
+<!--                                    Участник 3-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="content_2_two_2_main_4">-->
+<!--                                <img class="content_2_two_2_main_img" src="static/imgs/member_4.png">-->
+<!--                                <div class="content_2_two_2_main_text">-->
+<!--                                    Участник 4-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="content_2_two_2_main_5">-->
+<!--                                <img class="content_2_two_2_main_img" src="static/imgs/member_5.png">-->
+<!--                                <div class="content_2_two_2_main_text">-->
+<!--                                    Участник 5-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <img class="content_2_two_main_plus" src="static/imgs/plus.png">
                         </div>
                     </div>
                 </div>
-                <div class="content_2_three">
-                    <div class="content_2_three_header">
-                        Динамика изменения эмоциального фона
-                    </div>
-                    <img class="content_2_three_chart" src="static/imgs/chart_3.png">
-                    <div class="content_2_three_time">
-                        Время
-                    </div>
-                </div>
+<!--                <div class="content_2_three">-->
+<!--                    <div class="content_2_three_header">-->
+<!--                        Динамика изменения эмоциального фона-->
+<!--                    </div>-->
+<!--                    <img class="content_2_three_chart" src="static/imgs/chart_3.png">-->
+<!--                    <div class="content_2_three_time">-->
+<!--                        Время-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <div class="content_3">
                 <div class="content_3_header">
@@ -323,6 +326,8 @@
                 result: null,
             }
         },
+
+        props: ['video', 'videoImage'],
 
         watch: {
             'this.$parent.dataset': {
