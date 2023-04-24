@@ -720,6 +720,8 @@
                         this.$parent.showHeaderResult = true
                         this.$parent.video = res.data.fileUrl
                         this.$parent.videoImage = res.data.resPhoto
+                        this.$parent.report = res.data.report
+                        this.$parent.emotion = res.data.emotion
                     })
             },
 
@@ -732,17 +734,5 @@
                 this.$parent.showHome = false
             }
         },
-
-        mounted() {
-            // let part = 1301808
-            // let size = 19527124
-            // let percent = 0
-            // setInterval(function () {
-            //     if (percent < 100) {
-            //         percent++
-            //         console.log(percent)
-            //     }
-            // }, (part/size) * 1000, percent)
-        }
     }
 </script>
