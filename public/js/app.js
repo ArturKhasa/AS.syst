@@ -6839,7 +6839,7 @@ var staticRenderFns = [function () {
     attrs: {
       src: "static/imgs/pc_1.png"
     }
-  })])])]);
+  }), _vm._v(" "), _c("video", [_c("source")])])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

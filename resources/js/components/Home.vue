@@ -163,7 +163,7 @@
                                 Ограничения по загрузке:
                             </div>
                             <div class="content_4_one_2_text">
-                                <ul>
+                                <ul style="padding-left: 3rem;">
                                     <li>
                                         Формат - mp4, wav, др.;
                                     </li>
@@ -697,7 +697,7 @@
                 this.videoIsLoaded = true
                 console.log(file)
 
-                let part = 1301808
+                let part = 1230000
                 let size = file.size
 
                 var self = this
@@ -719,6 +719,7 @@
                         this.hasResult = true
                         this.$parent.showHeaderResult = true
                         this.$parent.video = res.data.fileUrl
+                        this.$parent.videoImage = res.data.resPhoto
                     })
             },
 

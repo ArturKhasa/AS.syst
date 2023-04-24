@@ -25,7 +25,8 @@ class ResultController extends Controller
             $file = $request->file('video');
             $extension = $file->getClientOriginalExtension();
 
-            $fileUrl = self::removeFileExtension($file->store('public/xui'));
+            $fileUrl = self::removeFileExtension($file->store('public/videos'));
+            $resFileName = mb_substr($fileUrl, 14);
 
             $resultUrl = base_path() . '/storage/app/' . $fileUrl . '.' . $extension;
         };
@@ -44,7 +45,8 @@ class ResultController extends Controller
         return [
             'result'  => array_values($this->getAvg($result)),
             'sum'     => collect($this->getAvg($result))->sum(),
-            'fileUrl' => $resultUrl
+            'fileUrl' => 'storage/videos/'. $resFileName . '.' . $extension,
+            'resPhoto' => 'storage/videos/'. $resFileName . '0.' . 'jpg',
         ];
     }
 

@@ -36,7 +36,7 @@
             </div>
         </div>
         <home v-if="showHome"></home>
-        <result v-else></result>
+        <result v-else :video="video" :video-image="videoImage"></result>
     </div>
 </template>
 
@@ -50,7 +50,8 @@
                 showResult: false,
                 showHeaderResult: false,
                 dataset: null,
-                video: null
+                video: null,
+                videoImage: null
             }
         },
 
