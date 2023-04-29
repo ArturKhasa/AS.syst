@@ -210,16 +210,16 @@
                         <div class="content_2_one_2_emotion">
                             <div class="content_2_one_2_emotion_circle"></div>
                             <div class="content_2_one_2_emotion_text">
-                                Радость
+                                {{ $parent.emotion }}
                             </div>
                         </div>
                         <div class="content_2_one_2_text">
                             <div class="content_2_one_2_text_1">
-                                Система зафиксировала постепенное снижение уровня Радости по ходу групповой работы.
+                                {{ $parent.report }}
                             </div>
-                            <div class="content_2_one_2_text_2">
-                                Возможно, вы сказали что-то не то, или ваши сотрудники склонны терять интерес к работе спустя какое-то время?
-                            </div>
+<!--                            <div class="content_2_one_2_text_2">-->
+<!--                                Возможно, вы сказали что-то не то, или ваши сотрудники склонны терять интерес к работе спустя какое-то время?-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>

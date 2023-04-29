@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Messages\Constants;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,11 +43,16 @@ class ResultController extends Controller
         $result = json_decode($test[0], true);
         $this->getCountUsers($result);
 
+        $avg_result = array_values($this->getAvg($result));
+        $sum_result = collect($this->getAvg($result))->sum();
+
         return [
-            'result'  => array_values($this->getAvg($result)),
-            'sum'     => collect($this->getAvg($result))->sum(),
+            'result'  => $avg_result,
+            'sum'     => $sum_result,
+            'report' => $this->getReport($avg_result),
             'fileUrl' => 'storage/videos/'. $resFileName . '.' . $extension,
             'resPhoto' => 'storage/videos/'. $resFileName . '0.' . 'jpg',
+            'emotion' => $this->getEmotion($avg_result)
         ];
     }
 
@@ -94,5 +100,54 @@ class ResultController extends Controller
     public static function removeFileExtension($fileName)
     {
         return substr($fileName, 0, strrpos($fileName, '.'));
+    }
+
+    private function getReport($data)
+    {
+        $maxvalue = max($data);
+        $maxIndex = 0;
+
+        while (list($key,$value) = each($data)){
+
+            if ($value == $maxvalue) $maxIndex = $key;
+
+        }
+
+        switch ($maxIndex) {
+            case 0:
+                 return Constants::MAX_HAPPY;
+            case 1:
+                return Constants::MAX_SAD;
+            case 2:
+                return Constants::MAX_FEAR;
+            case 3:
+                return Constants::AVG_ANGRY;
+            case 4:
+                return Constants::MAX_NEUTRAL;
+            default:
+                return Constants::MAX_SURPRISE;
+        }
+    }
+
+    private function getEmotion($data)
+    {
+        $maxvalue = max($data);
+
+        switch ($maxvalue) {
+            case 0:
+                return Constants::HAPPY;
+            case 1:
+                return Constants::SAD;
+            case 2:
+                return Constants::FEAR;
+            case 3:
+                return Constants::ANGRY;
+            case 4:
+                return Constants::NEUTRAL;
+            case 5:
+                return Constants::SURPRISE;
+            default:
+                return 'Не определено';
+        }
     }
 }

@@ -51,7 +51,9 @@
                 showHeaderResult: false,
                 dataset: null,
                 video: null,
-                videoImage: null
+                videoImage: null,
+                report: null,
+                emotion: null,
             }
         },
 

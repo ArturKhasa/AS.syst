@@ -5323,7 +5323,9 @@ __webpack_require__.r(__webpack_exports__);
       showResult: false,
       showHeaderResult: false,
       dataset: null,
-      video: null
+      video: null,
+      videoImage: null,
+      report: null
     };
   },
   components: {
@@ -5370,7 +5372,7 @@ __webpack_require__.r(__webpack_exports__);
       var file = this.$refs.file_input.files[0];
       this.videoIsLoaded = true;
       console.log(file);
-      var part = 1301808;
+      var part = 1230000;
       var size = file.size;
       var self = this;
       setInterval(function () {
@@ -5387,6 +5389,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.hasResult = true;
         _this.$parent.showHeaderResult = true;
         _this.$parent.video = res.data.fileUrl;
+        _this.$parent.videoImage = res.data.resPhoto;
+        _this.$parent.report = res.data.report;
       });
     },
     toFree: function toFree() {
@@ -5396,17 +5400,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$parent.showResult = true;
       this.$parent.showHome = false;
     }
-  },
-  mounted: function mounted() {
-    // let part = 1301808
-    // let size = 19527124
-    // let percent = 0
-    // setInterval(function () {
-    //     if (percent < 100) {
-    //         percent++
-    //         console.log(percent)
-    //     }
-    // }, (part/size) * 1000, percent)
   }
 });
 
@@ -5430,6 +5423,7 @@ __webpack_require__.r(__webpack_exports__);
       result: null
     };
   },
+  props: ['video', 'videoImage'],
   watch: {
     'this.$parent.dataset': {
       deep: true,
@@ -5540,7 +5534,12 @@ var render = function render() {
     staticClass: "results_header"
   }, [_vm._v("Результаты")]), _vm._v(" "), _c("a", {
     staticClass: "results_header_bottom"
-  })])]) : _vm._e()]), _vm._v(" "), _vm.showHome ? _c("home") : _c("result")], 1);
+  })])]) : _vm._e()]), _vm._v(" "), _vm.showHome ? _c("home") : _c("result", {
+    attrs: {
+      video: _vm.video,
+      "video-image": _vm.videoImage
+    }
+  })], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -5967,7 +5966,11 @@ var staticRenderFns = [function () {
     staticClass: "content_4_one_2_header"
   }, [_vm._v("\n                                Ограничения по загрузке:\n                            ")]), _vm._v(" "), _c("div", {
     staticClass: "content_4_one_2_text"
-  }, [_c("ul", [_c("li", [_vm._v("\n                                        Формат - mp4, wav, др.;\n                                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                                        Продолжительность - от 10 секунд до 3 минут;\n                                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                                        Объём- не более 500 Мб.\n                                    ")])])])]);
+  }, [_c("ul", {
+    staticStyle: {
+      "padding-left": "3rem"
+    }
+  }, [_c("li", [_vm._v("\n                                        Формат - mp4, wav, др.;\n                                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                                        Продолжительность - от 10 секунд до 3 минут;\n                                    ")]), _vm._v(" "), _c("li", [_vm._v("\n                                        Объём- не более 500 Мб.\n                                    ")])])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -6647,9 +6650,27 @@ var render = function render() {
     staticClass: "content"
   }, [_c("div", {
     staticClass: "content_header"
-  }, [_vm._v("\n                Результаты анализа\n            ")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "content_2"
+  }, [_vm._v("\n                Результаты анализа\n            ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_1"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "content_1_main"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "content_1_main_video"
+  }, [_c("div", {
+    staticClass: "content_1_main_video_text"
+  }, [_vm._v("\n                            Предварительный просмотр\n                        ")]), _vm._v(" "), _c("video", {
+    staticClass: "content_1_main_video_1",
+    attrs: {
+      src: _vm.video,
+      controls: ""
+    }
+  }, [_c("p", [_vm._v("Ваш браузер не поддерживает HTML5 видео. Используйте "), _c("a", {
+    attrs: {
+      href: _vm.video
+    }
+  }, [_vm._v("ссылку на видео")]), _vm._v(" для доступа.")])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "content_2"
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "content_2_one"
   }, [_c("div", {
     staticClass: "content_2_one_1"
@@ -6667,7 +6688,7 @@ var render = function render() {
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "content_2_one_1_second"
-  }, [_vm._m(2), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "content_2_one_1_second_content"
   }, [_c("div", {
     staticClass: "content_2_one_1_second_content_names"
@@ -6777,22 +6798,50 @@ var render = function render() {
     staticClass: "content_2_one_1_second_content_line_6_bg"
   })]), _vm._v(" "), _vm.data ? _c("div", {
     staticClass: "content_2_one_1_second_content_proc"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.data.datasets[0].data[5]) + "%\n                                        ")]) : _vm._e()])])])])]), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _vm._m(7)]);
+  }, [_vm._v("\n                                            " + _vm._s(_vm.data.datasets[0].data[5]) + "%\n                                        ")]) : _vm._e()])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "content_2_one_2"
+  }, [_vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("div", {
+    staticClass: "content_2_one_2_text"
+  }, [_c("div", {
+    staticClass: "content_2_one_2_text_1"
+  }, [_vm._v("\n                                " + _vm._s(_vm.$parent.report) + "\n                            ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "content_2_two"
+  }, [_vm._m(6), _vm._v(" "), _c("div", {
+    staticClass: "content_2_two_2"
+  }, [_c("div", {
+    staticClass: "content_2_two_2_header"
+  }, [_vm._v("\n                            Участники\n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "content_2_two_2_main"
+  }, [_c("div", {
+    staticClass: "content_2_two_2_main_1"
+  }, [_c("img", {
+    staticClass: "content_2_two_2_main_img",
+    attrs: {
+      src: _vm.videoImage
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "content_2_two_2_main_text"
+  }, [_vm._v("\n                                    Участник 1\n                                ")])]), _vm._v(" "), _c("img", {
+    staticClass: "content_2_two_main_plus",
+    attrs: {
+      src: "static/imgs/plus.png"
+    }
+  })])])])]), _vm._v(" "), _vm._m(7)]), _vm._v(" "), _vm._m(8)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "content_1"
-  }, [_c("div", {
     staticClass: "content_1_header"
   }, [_c("div", {
     staticClass: "content_1_header_text"
   }, [_vm._v("\n                        Общая информация\n                    ")]), _vm._v(" "), _c("div", {
     staticClass: "content_1_header_line"
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "content_1_main"
-  }, [_c("div", {
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "content_1_main_text"
   }, [_c("div", {
     staticClass: "content_1_main_header"
@@ -6830,16 +6879,7 @@ var staticRenderFns = [function () {
     staticClass: "content_1_main_text_size_2"
   }, [_vm._v("\n                                    0,89 гб.\n                                ")])])]), _vm._v(" "), _c("div", {
     staticClass: "content_1_main_text_PDF"
-  }, [_vm._v("\n                            Загрузить отчёт в формате PDF\n                        ")])]), _vm._v(" "), _c("div", {
-    staticClass: "content_1_main_video"
-  }, [_c("div", {
-    staticClass: "content_1_main_video_text"
-  }, [_vm._v("\n                            Предварительный просмотр\n                        ")]), _vm._v(" "), _c("img", {
-    staticClass: "content_1_main_video_1",
-    attrs: {
-      src: "static/imgs/pc_1.png"
-    }
-  }), _vm._v(" "), _c("video", [_c("source")])])])]);
+  }, [_vm._v("\n                            Загрузить отчёт в формате PDF\n                        ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -6870,8 +6910,6 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "content_2_one_2"
-  }, [_c("div", {
     staticClass: "content_2_one_2_header_circles"
   }, [_c("div", {
     staticClass: "content_2_one_2_header"
@@ -6883,25 +6921,21 @@ var staticRenderFns = [function () {
     staticClass: "content_2_one_2_circle_2"
   }), _vm._v(" "), _c("div", {
     staticClass: "content_2_one_2_circle_3"
-  })])]), _vm._v(" "), _c("div", {
+  })])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
     staticClass: "content_2_one_2_emotion"
   }, [_c("div", {
     staticClass: "content_2_one_2_emotion_circle"
   }), _vm._v(" "), _c("div", {
     staticClass: "content_2_one_2_emotion_text"
-  }, [_vm._v("\n                                Радость\n                            ")])]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_one_2_text"
-  }, [_c("div", {
-    staticClass: "content_2_one_2_text_1"
-  }, [_vm._v("\n                                Система зафиксировала постепенное снижение уровня Радости по ходу групповой работы.\n                            ")]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_one_2_text_2"
-  }, [_vm._v("\n                                Возможно, вы сказали что-то не то, или ваши сотрудники склонны терять интерес к работе спустя какое-то время?\n                            ")])])]);
+  }, [_vm._v("\n                                Радость\n                            ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "content_2_two"
-  }, [_c("div", {
     staticClass: "content_2_two_1"
   }, [_c("div", {
     staticClass: "content_2_two_1_header"
@@ -6921,78 +6955,7 @@ var staticRenderFns = [function () {
     staticClass: "content_2_two_text_4"
   }, [_vm._v("4. Участник 4")]), _vm._v(" "), _c("div", {
     staticClass: "content_2_two_text_5"
-  }, [_vm._v("5. Участник 5")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2"
-  }, [_c("div", {
-    staticClass: "content_2_two_2_header"
-  }, [_vm._v("\n                            Участники\n                        ")]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main"
-  }, [_c("div", {
-    staticClass: "content_2_two_2_main_1"
-  }, [_c("img", {
-    staticClass: "content_2_two_2_main_img",
-    attrs: {
-      src: "static/imgs/member_1.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_text"
-  }, [_vm._v("\n                                    Участник 1\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_2"
-  }, [_c("img", {
-    staticClass: "content_2_two_2_main_img",
-    attrs: {
-      src: "static/imgs/member_2.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_text"
-  }, [_vm._v("\n                                    Участник 2\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_3"
-  }, [_c("img", {
-    staticClass: "content_2_two_2_main_img",
-    attrs: {
-      src: "static/imgs/member_3.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_text"
-  }, [_vm._v("\n                                    Участник 3\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_4"
-  }, [_c("img", {
-    staticClass: "content_2_two_2_main_img",
-    attrs: {
-      src: "static/imgs/member_4.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_text"
-  }, [_vm._v("\n                                    Участник 4\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_5"
-  }, [_c("img", {
-    staticClass: "content_2_two_2_main_img",
-    attrs: {
-      src: "static/imgs/member_5.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_2_two_2_main_text"
-  }, [_vm._v("\n                                    Участник 5\n                                ")])]), _vm._v(" "), _c("img", {
-    staticClass: "content_2_two_main_plus",
-    attrs: {
-      src: "static/imgs/plus.png"
-    }
-  })])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "content_2_three"
-  }, [_c("div", {
-    staticClass: "content_2_three_header"
-  }, [_vm._v("\n                        Динамика изменения эмоциального фона\n                    ")]), _vm._v(" "), _c("img", {
-    staticClass: "content_2_three_chart",
-    attrs: {
-      src: "static/imgs/chart_3.png"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "content_2_three_time"
-  }, [_vm._v("\n                        Время\n                    ")])]);
+  }, [_vm._v("5. Участник 5")])])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
