@@ -208,9 +208,9 @@
                             </div>
                         </div>
                         <div class="content_2_one_2_emotion">
-                            <div class="content_2_one_2_emotion_circle"></div>
+                            <div :class="'content_2_one_1_second_content_name_circle_' + $parent.emotion.index"></div>
                             <div class="content_2_one_2_emotion_text">
-                                {{ $parent.emotion }}
+                                {{ $parent.emotion.name }}
                             </div>
                         </div>
                         <div class="content_2_one_2_text">
@@ -230,15 +230,15 @@
                         </div>
                         <div class="content_2_two_text">
                             <div class="content_2_two_text_header">
-                                Обнаружено: 5 человек
+                                Обнаружено: {{$parent.countPerson}} человек
                             </div>
-                            <div class="content_2_two_text_main">
-                                <div class="content_2_two_text_1">1. Участник 1</div>
-                                <div class="content_2_two_text_2">2. Участник 2</div>
-                                <div class="content_2_two_text_3">3. Участник 3</div>
-                                <div class="content_2_two_text_4">4. Участник 4</div>
-                                <div class="content_2_two_text_5">5. Участник 5</div>
-                            </div>
+<!--                            <div class="content_2_two_text_main">-->
+<!--                                <div class="content_2_two_text_1">1. Участник 1</div>-->
+<!--                                <div class="content_2_two_text_2">2. Участник 2</div>-->
+<!--                                <div class="content_2_two_text_3">3. Участник 3</div>-->
+<!--                                <div class="content_2_two_text_4">4. Участник 4</div>-->
+<!--                                <div class="content_2_two_text_5">5. Участник 5</div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                     <div class="content_2_two_2">
@@ -247,9 +247,9 @@
                         </div>
                         <div class="content_2_two_2_main">
                             <div class="content_2_two_2_main_1">
-                                <img class="content_2_two_2_main_img" :src="videoImage">
+                                <a :href="videoImage" target="_blank"><img class="content_2_two_2_main_img" :src="videoImage"></a>
                                 <div class="content_2_two_2_main_text">
-                                    Участник 1
+                                    Определено
                                 </div>
                             </div>
 <!--                            <div class="content_2_two_2_main_2">-->
@@ -276,7 +276,7 @@
 <!--                                    Участник 5-->
 <!--                                </div>-->
 <!--                            </div>-->
-                            <img class="content_2_two_main_plus" src="static/imgs/plus.png">
+<!--                            <img class="content_2_two_main_plus" src="static/imgs/plus.png">-->
                         </div>
                     </div>
                 </div>
@@ -294,17 +294,17 @@
                 <div class="content_3_header">
                     <div class="content_3_header_line"></div>
                 </div>
-                <div class="content_3_main">
-                    <div class="content_3_1">
-                        Посмотреть рекомендации
-                    </div>
-                    <div class="content_3_2">
-                        Оценить работу системы
-                    </div>
-                    <div class="content_3_3">
-                        Сообщить об ошибке
-                    </div>
-                </div>
+<!--                <div class="content_3_main">-->
+<!--                    <div class="content_3_1">-->
+<!--                        Посмотреть рекомендации-->
+<!--                    </div>-->
+<!--                    <div class="content_3_2">-->
+<!--                        Оценить работу системы-->
+<!--                    </div>-->
+<!--                    <div class="content_3_3">-->
+<!--                        Сообщить об ошибке-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
         <div class="footer">

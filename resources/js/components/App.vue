@@ -54,6 +54,7 @@
                 videoImage: null,
                 report: null,
                 emotion: null,
+                countPerson: null
             }
         },
 

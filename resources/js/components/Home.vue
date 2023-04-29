@@ -190,7 +190,8 @@
                             Пожалуйста, подождите...
                         </div>
                         <div class="content_4_two_text_3">
-                            Выполнено: {{percent}}%
+<!--                            Выполнено: {{percent}}%-->
+                            <pulse-loader color="#82E70C"></pulse-loader>
                         </div>
                     </div>
 
@@ -678,7 +679,9 @@
 </template>
 
 <script>
+    import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
     export default {
+        components: {PulseLoader},
         data() {
             return {
                 videoIsLoaded: false,
@@ -686,7 +689,6 @@
                 percent: 0
             }
         },
-
         methods: {
             setVideo() {
                 this.$refs.file_input.click()
@@ -722,6 +724,7 @@
                         this.$parent.videoImage = res.data.resPhoto
                         this.$parent.report = res.data.report
                         this.$parent.emotion = res.data.emotion
+                        this.$parent.countPerson = res.data.countPerson
                     })
             },
 

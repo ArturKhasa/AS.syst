@@ -49,6 +49,7 @@ class ResultController extends Controller
         return [
             'result'  => $avg_result,
             'sum'     => $sum_result,
+            'countPerson' => $this->countUsers,
             'report' => $this->getReport($avg_result),
             'fileUrl' => 'storage/videos/'. $resFileName . '.' . $extension,
             'resPhoto' => 'storage/videos/'. $resFileName . '0.' . 'jpg',
@@ -133,7 +134,13 @@ class ResultController extends Controller
     {
         $maxvalue = max($data);
 
-        switch ($maxvalue) {
+        while (list($key,$value) = each($data)){
+
+            if ($value == $maxvalue) $maxIndex = $key;
+
+        }
+
+        switch ($maxIndex) {
             case 0:
                 return Constants::HAPPY;
             case 1:

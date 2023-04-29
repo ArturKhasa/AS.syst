@@ -17,11 +17,29 @@ class Constants
     const MAX_NEUTRAL = 'человек не заинтересован в процессе, испытывает скуку ';
     const MAX_SURPRISE = 'пожалуйста, выберите другое видео для анализа';
 
-    const HAPPY = 'Радость';
-    const SAD = 'Грусть';
-    const FEAR = 'Страх';
-    const ANGRY = 'Злость';
-    const NEUTRAL = 'Нейтральность';
-    const SURPRISE = 'Удивление(Не определено)';
+    const HAPPY = [
+        'index' => 1,
+        'name' => 'Радость'
+    ];
+    const SAD = [
+        'index' => 2,
+        'name' => 'Грусть'
+    ];
+    const FEAR = [
+        'index' => 3,
+        'name' => 'Страх'
+    ];
+    const ANGRY = [
+        'index' => 4,
+        'name' => 'Злость'
+    ];
+    const NEUTRAL = [
+        'index' => 5,
+        'name' => 'Нейтральность'
+    ];
+    const SURPRISE = [
+        'index' => 6,
+        'name' => 'Удивление (не определено)'
+    ];
 
 }
