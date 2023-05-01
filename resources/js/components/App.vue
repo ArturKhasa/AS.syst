@@ -54,7 +54,8 @@
                 videoImage: null,
                 report: null,
                 emotion: null,
-                countPerson: null
+                countPerson: null,
+                fileInfo:null
             }
         },
 

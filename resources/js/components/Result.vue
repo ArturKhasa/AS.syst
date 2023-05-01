@@ -22,7 +22,7 @@
                                     Название:
                                 </a>
                                 <a class="content_1_main_text_name_2">
-                                    командная_работа_17_апр
+                                    {{$parent.fileInfo.name}}
                                 </a>
                             </div>
                             <div class="content_1_main_text_format">
@@ -30,31 +30,31 @@
                                     Формат:
                                 </a>
                                 <a class="content_1_main_text_format_2">
-                                    mov
+                                    {{$parent.fileInfo.type}}
                                 </a>
                             </div>
-                            <div class="content_1_main_text_length">
-                                <a class="content_1_main_text_length_1">
-                                    Продолжительность:
-                                </a>
-                                <a class="content_1_main_text_length_2">
-                                    32 м. 19 сек.
-                                </a>
-                            </div>
-                            <div class="content_1_main_text_resolutions">
-                                <a class="content_1_main_text_resolutions_1">
-                                    Разрешение:
-                                </a>
-                                <a class="content_1_main_text_resolutions_2">
-                                    720p
-                                </a>
-                            </div>
+<!--                            <div class="content_1_main_text_length">-->
+<!--                                <a class="content_1_main_text_length_1">-->
+<!--                                    Продолжительность:-->
+<!--                                </a>-->
+<!--                                <a class="content_1_main_text_length_2">-->
+<!--                                    {{this.$refs.videoPlayer.duration}}-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="content_1_main_text_resolutions">-->
+<!--                                <a class="content_1_main_text_resolutions_1">-->
+<!--                                    Разрешение:-->
+<!--                                </a>-->
+<!--                                <a class="content_1_main_text_resolutions_2">-->
+<!--                                    720p-->
+<!--                                </a>-->
+<!--                            </div>-->
                             <div class="content_1_main_text_size">
                                 <a class="content_1_main_text_size_1">
                                     Размер:
                                 </a>
                                 <a class="content_1_main_text_size_2">
-                                    0,89 гб.
+                                    {{($parent.fileInfo.size / 1024 / 1024).toFixed(2)}} МБ
                                 </a>
                             </div>
                         </div>

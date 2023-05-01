@@ -696,8 +696,8 @@
 
             sendVideo() {
                 let file = this.$refs.file_input.files[0]
-                this.videoIsLoaded = true
                 console.log(file)
+                this.videoIsLoaded = true
 
                 let part = 1230000
                 let size = file.size
