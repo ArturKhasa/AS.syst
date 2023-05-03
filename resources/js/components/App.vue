@@ -55,7 +55,11 @@
                 report: null,
                 emotion: null,
                 countPerson: null,
-                fileInfo:null
+                fileInfo: {
+                    name: null,
+                    size: null,
+                    type: null
+                }
             }
         },
 
