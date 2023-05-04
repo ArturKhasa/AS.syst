@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Messages\Constants;
+use App\Jobs\DeleteTempFilesJob;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ResultController extends Controller
 {
@@ -19,6 +20,7 @@ class ResultController extends Controller
 
     public function index(Request $request)
     {
+        $sessionKey = Str::random(36);
 //        $data = file_get_contents(storage_path() . '/app/public/result.json');
 //        $result = json_decode($data, true);
 
@@ -26,7 +28,7 @@ class ResultController extends Controller
             $file = $request->file('video');
             $extension = $file->getClientOriginalExtension();
 
-            $fileUrl = self::removeFileExtension($file->store('public/videos'));
+            $fileUrl = self::removeFileExtension($file->store('public/videos/' . $sessionKey));
             $resFileName = mb_substr($fileUrl, 14);
 
             $resultUrl = base_path() . '/storage/app/' . $fileUrl . '.' . $extension;
@@ -46,6 +48,11 @@ class ResultController extends Controller
         $avg_result = array_values($this->getAvg($result));
         $sum_result = collect($this->getAvg($result))->sum();
 
+        $catalog = storage_path() . '/app/public/videos/' . $sessionKey;
+        exec("chmod -R 777 $catalog");
+        DeleteTempFilesJob::dispatch($catalog)
+            ->delay(now()->addMinutes(10));
+
         return [
             'result'  => $avg_result,
             'sum'     => $sum_result,
@@ -53,7 +60,8 @@ class ResultController extends Controller
             'report' => $this->getReport($avg_result),
             'fileUrl' => 'storage/videos/'. $resFileName . '.' . $extension,
             'resPhoto' => 'storage/videos/'. $resFileName . '0.' . 'jpg',
-            'emotion' => $this->getEmotion($avg_result)
+            'emotion' => $this->getEmotion($avg_result),
+            'session_key' => $sessionKey
         ];
     }
 

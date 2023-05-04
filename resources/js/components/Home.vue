@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="all">
+        <div v-if="!mobile" class="all">
             <div class="all_str_1">
                 <div class="content">
                     <div class="content_header">Что есть эмоция?</div>
@@ -227,27 +227,27 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Введите своё имя" class="form-control mt-3 tab_form" required>
+                                    <input v-model="form.name" type="text" placeholder="Введите своё имя" class="form-control mt-3 tab_form" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Введите свою фамилию" class="form-control mt-3 tab_form" required>
+                                    <input v-model="form.surname" type="text" placeholder="Введите свою фамилию" class="form-control mt-3 tab_form" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="email" placeholder="Введите Вашу электронную почту" class="form-control mt-3 tab_form" required>
+                                    <input v-model="form.email" type="email" placeholder="Введите Вашу электронную почту" class="form-control mt-3 tab_form" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input type="number" placeholder="Введите Ваш номер телефона" class="form-control mt-3 tab_form" required>
+                                    <input v-model="form.phone" type="number" placeholder="Введите Ваш номер телефона" class="form-control mt-3 tab_form" required>
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction: column; justify-content: center; ">
-                                <textarea placeholder="Введите Ваш вопрос или обращение" class="form-control mt-3 tab_form" id="" cols="30" rows="10"></textarea>
-                                <button type="submit" class="btn btn-primary mt-3 tab_button">Отправить</button>
+                                <textarea v-model="form.text" placeholder="Введите Ваш вопрос или обращение" class="form-control mt-3 tab_form" id="" cols="30" rows="10"></textarea>
+                                <button @click="sendMail" type="button" class="btn btn-primary mt-3 tab_button">Отправить</button>
                             </div>
                         </div>
                     </form>
@@ -264,7 +264,7 @@
         </div>
 
 <!--     Mobile   -->
-        <div class="mobile">
+        <div v-else class="mobile">
             <div class="mobile_str_1">
                 <div class="mobile_header">
                     <img class="mobile_home" src="static/img/mobile_1.png">
@@ -505,20 +505,21 @@
                         </div>
                         <img src="static/img/mobile_circles.png" style="width: 100%; margin-top: 7.692307vw;" class="mobile_content_3_4_circles">
                     </div>
-                    <div class="mobile_header_4">
+                    <div class="mobile_header_4" ref="video_block">
                         Запустите AS.SYST прямо сейчас! *
                     </div>
                 </div>
                 <div class="mobile_content_4">
 
-                    <!-- <div class="mobile_content_4_one">
+                     <div v-if="!videoIsLoaded" class="mobile_content_4_one">
                         <div class="mobile_content_4_one_1">
                             <div class="mobile_content_4_one_1_img">
                                 <img style="width: 6.3655vw;" src="static/img/pc_4.png">
                             </div>
                             <div class="mobile_content_4_one_1_text">
-                                <div class="mobile_content_4_one_1_text_1">
+                                <div @click="setVideo" class="mobile_content_4_one_1_text_1">
                                     Выберите файл
+                                    <input type="file" hidden ref="file_input" @change="sendVideo">
                                 </div>
                             </div>
                         </div>
@@ -551,13 +552,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
-                    <div class="mobile_content_4_two_three">
+                    <div v-if="videoIsLoaded" class="mobile_content_4_two_three">
                         <div class="mobile_content_4_two_three_img" id="mobile_content_4_two_three">
                             <img class="mobile_img_pc_4_2" src="static/img/mobile_12.png">
 
-                            <!-- <div class="mobile_content_4_two">
+                            <div v-if="!hasResult" class="mobile_content_4_two">
                                 <div class="mobile_content_4_two_text_1">
                                     Видео обрабатывается
                                 </div>
@@ -565,15 +566,16 @@
                                     Пожалуйста, подождите...
                                 </div>
                                 <div class="mobile_content_4_two_text_3">
-                                    Выполнено: n%
+<!--                                    Выполнено: n%-->
+                                    <pulse-loader color="#82E70C"></pulse-loader>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <div class="mobile_content_4_three">
+                            <div v-if="hasResult" class="mobile_content_4_three">
                                 <div class="mobile_content_4_three_text">
                                     Анализ успешно выполнен!
                                 </div>
-                                <a class="mobile_content_4_three_button" href="results.html">
+                                <a @click="goToResult" class="mobile_content_4_three_button">
                                     Показать результаты
                                 </a>
                             </div>
@@ -627,7 +629,7 @@
                                         Ваше имя
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" placeholder="Введите своё имя" class="form-control tab_form" required>
+                                        <input v-model="form.name" type="text" placeholder="Введите своё имя" class="form-control tab_form" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -635,7 +637,7 @@
                                         Ваша фамилия
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" placeholder="Введите свою фамилию" class="form-control tab_form" required>
+                                        <input v-model="form.surname" type="text" placeholder="Введите свою фамилию" class="form-control tab_form" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -643,7 +645,7 @@
                                         Ваша электронная почта
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" placeholder="Введите Вашу электронную почту" class="form-control tab_form" required>
+                                        <input v-model="form.email" type="email" placeholder="Введите Вашу электронную почту" class="form-control tab_form" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -651,15 +653,15 @@
                                         Ваш номер телефона
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" placeholder="Введите Ваш номер телефона" class="form-control tab_form" required>
+                                        <input v-model="form.phone" type="number" placeholder="Введите Ваш номер телефона" class="form-control tab_form" required>
                                     </div>
                                 </div>
                                 <div style="display: flex; flex-direction: column; justify-content: center; ">
                                     <div class="mobile_tab_header">
                                         Ваше обращение
                                     </div>
-                                    <textarea placeholder="Введите Ваш вопрос или обращение" class="form-control tab_form" id="" cols="30" rows="10"></textarea>
-                                    <button type="submit" class="btn btn-primary mt-3 tab_button">Отправить</button>
+                                    <textarea v-model="form.text" placeholder="Введите Ваш вопрос или обращение" class="form-control tab_form" id="" cols="30" rows="10"></textarea>
+                                    <button @click="sendMail" type="button" class="btn btn-primary mt-3 tab_button">Отправить</button>
                                 </div>
                             </div>
                         </form>
@@ -686,9 +688,19 @@
             return {
                 videoIsLoaded: false,
                 hasResult: false,
-                percent: 0
+                percent: 0,
+                form: {
+                    name: '',
+                    surname: '',
+                    email: '',
+                    phone: '',
+                    text: ''
+                }
             }
         },
+
+        props: ['mobile'],
+
         methods: {
             setVideo() {
                 this.$refs.file_input.click()
@@ -697,6 +709,9 @@
             sendVideo() {
                 let file = this.$refs.file_input.files[0]
                 console.log(file)
+                this.$parent.fileInfo.name = file.name
+                this.$parent.fileInfo.size = file.size
+                this.$parent.fileInfo.type = file.type
                 this.videoIsLoaded = true
 
                 let part = 1230000
@@ -725,6 +740,22 @@
                         this.$parent.report = res.data.report
                         this.$parent.emotion = res.data.emotion
                         this.$parent.countPerson = res.data.countPerson
+
+                        localStorage.setItem('session_key_as', res.data.session_key)
+
+                        let objForStorage = {
+                            dataset: res.data,
+                            showHeaderResult: true,
+                            video: res.data.fileUrl,
+                            videoImage: res.data.resPhoto,
+                            report: res.data.report,
+                            emotion: res.data.emotion,
+                            countPerson: res.data.countPerson
+                        }
+
+                        localStorage.setItem('last_session_assyst', JSON.stringify(objForStorage))
+
+
                     })
             },
 
@@ -735,6 +766,12 @@
             goToResult() {
                 this.$parent.showResult = true
                 this.$parent.showHome = false
+            },
+
+            sendMail () {
+                axios.post('api/sendMail', {
+                    form: this.form
+                })
             }
         },
     }

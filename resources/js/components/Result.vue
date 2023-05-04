@@ -58,7 +58,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="content_1_main_text_PDF">
+                        <div @click="downloadReport" class="content_1_main_text_PDF">
                             Загрузить отчёт в формате PDF
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content_2">
+            <div class="content_2" ref="report">
                 <div class="content_2_header">
                     <div class="content_2_header_text">
                         Эмоциальный фон
@@ -319,6 +319,7 @@
 </template>
 
 <script>
+    import html2pdf from 'html2pdf.js'
     export default {
         data () {
             return {
@@ -380,6 +381,13 @@
                         }
                     }
                 });
+            },
+
+            downloadReport () {
+                html2pdf(this.$refs.report, {
+                    margin: 2,
+                    filename: 'report.pdf'
+                })
             }
         },
 
