@@ -757,6 +757,14 @@
 
 
                     })
+                    .catch((error) => {
+                        if(error.response.status === 422){
+                            error.response.data.errors.video.forEach(elem => {
+                                this.$toast(elem);
+                            })
+                            setTimeout(() => { this.videoIsLoaded = false }, 1000);
+                        }
+                    })
             },
 
             toFree () {

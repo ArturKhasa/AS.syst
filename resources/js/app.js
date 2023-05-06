@@ -26,6 +26,10 @@ Vue.component('app', require('./components/App').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import 'vue2-toast/lib/toast.css';
+import Toast from 'vue2-toast';
+Vue.use(Toast);
+
 const app = new Vue({
     el: '#app',
 });

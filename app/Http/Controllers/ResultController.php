@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Messages\Constants;
+use App\Http\Requests\ResultVideoRequest;
 use App\Jobs\DeleteTempFilesJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -18,7 +19,7 @@ class ResultController extends Controller
     const SURPRISE = 'surprise';
     const NEUTRAL = 'neutral';
 
-    public function index(Request $request)
+    public function index(ResultVideoRequest $request)
     {
         $sessionKey = Str::random(36);
 //        $data = file_get_contents(storage_path() . '/app/public/result.json');
@@ -59,7 +60,7 @@ class ResultController extends Controller
             'countPerson' => $this->countUsers,
             'report' => $this->getReport($avg_result),
             'fileUrl' => 'storage/videos/'. $resFileName . '.' . $extension,
-            'resPhoto' => 'storage/videos/'. $resFileName . '0.' . 'jpg',
+            'resPhoto' => 'storage/videos/'. $resFileName . '190.' . 'jpg',
             'emotion' => $this->getEmotion($avg_result),
             'session_key' => $sessionKey
         ];

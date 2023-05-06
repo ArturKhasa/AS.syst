@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "html2pdf.js": "^0.10.1",
-        "vue-spinner": "^1.0.4"
+        "vue-spinner": "^1.0.4",
+        "vue2-toast": "^2.1.0"
     }
 }
