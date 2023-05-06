@@ -36,7 +36,7 @@ class DeleteTempFilesJob implements ShouldQueue
     {
         try {
             Log::channel('supervisor')->info($this->path);
-            exec("rm -R $this->path" );
+            exec("sudo rm -R $this->path" );
             Storage::deleteDirectory($this->path);
         } catch (\Exception $exception) {
             Log::channel('supervisor')->info($exception->getMessage());

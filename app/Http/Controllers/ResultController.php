@@ -19,7 +19,8 @@ class ResultController extends Controller
     const SURPRISE = 'surprise';
     const NEUTRAL = 'neutral';
 
-    public function index(ResultVideoRequest $request)
+//    public function index(ResultVideoRequest $request)
+    public function index(Request $request)
     {
         $sessionKey = Str::random(36);
 //        $data = file_get_contents(storage_path() . '/app/public/result.json');
@@ -28,10 +29,10 @@ class ResultController extends Controller
         if ($request->file('video')) {
             $file = $request->file('video');
             $extension = $file->getClientOriginalExtension();
+            $extension = $extension == 'MOV' ? 'mp4' : $extension;
 
             $fileUrl = self::removeFileExtension($file->store('public/videos/' . $sessionKey));
             $resFileName = mb_substr($fileUrl, 14);
-
             $resultUrl = base_path() . '/storage/app/' . $fileUrl . '.' . $extension;
         };
 

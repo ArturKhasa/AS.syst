@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <home v-if="showHome"></home>
+        <home v-if="showHome" :mobile="isMobile"></home>
         <result v-else :video="video" :video-image="videoImage"></result>
     </div>
 </template>
@@ -55,6 +55,7 @@
                 report: null,
                 emotion: null,
                 countPerson: null,
+                isMobile: null,
                 fileInfo: {
                     name: null,
                     size: null,
@@ -72,7 +73,7 @@
         },
 
         mounted() {
-            console.log(1111122)
+            this.isMobile = window.innerWidth < 590
         }
     }
 </script>
