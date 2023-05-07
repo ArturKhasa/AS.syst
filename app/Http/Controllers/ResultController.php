@@ -19,8 +19,7 @@ class ResultController extends Controller
     const SURPRISE = 'surprise';
     const NEUTRAL = 'neutral';
 
-//    public function index(ResultVideoRequest $request)
-    public function index(Request $request)
+    public function index(ResultVideoRequest $request)
     {
         $sessionKey = Str::random(36);
 //        $data = file_get_contents(storage_path() . '/app/public/result.json');
