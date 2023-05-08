@@ -28,10 +28,10 @@ class ResultController extends Controller
         if ($request->file('video')) {
             $file = $request->file('video');
             $extension = $file->getClientOriginalExtension();
+            $extension = $extension == 'MOV' ? 'mp4' : $extension;
 
             $fileUrl = self::removeFileExtension($file->store('public/videos/' . $sessionKey));
             $resFileName = mb_substr($fileUrl, 14);
-
             $resultUrl = base_path() . '/storage/app/' . $fileUrl . '.' . $extension;
         };
 
