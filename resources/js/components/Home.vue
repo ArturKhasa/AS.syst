@@ -266,17 +266,6 @@
 <!--     Mobile   -->
         <div v-else class="mobile">
             <div class="mobile_str_1">
-                <div class="mobile_header">
-                    <img class="mobile_home" src="static/img/mobile_1.png">
-                    <div class="mobile_header_logo">
-                        <div class="mobile_header_logo_img">
-                            <div class="mobile_header_logo_img_1"></div>
-                            <div class="mobile_header_logo_img_2"></div>
-                            <div class="mobile_header_logo_img_3"></div>
-                        </div>
-                    </div>
-                    <div class="mobile_header_logo_text">AS.SYST</div>
-                </div>
                 <div class="mobile_content_1">
                     <img class="mobile_content_1_header" src="static/img/mobile_2.png">
                     <div class="mobile_content_1_text_1">
@@ -617,7 +606,7 @@
                 <div class="mobile_6_header">
                     Остались вопросы?
                 </div>
-                <div class="mobile_6_content">
+                <div class="mobile_6_content" ref="goForm">
                     <div class="mobile_6_content_text">
                         Заполните форму снизу, и мы обязательно вам ответим.
                     </div>
@@ -629,7 +618,7 @@
                                         Ваше имя
                                     </div>
                                     <div class="form-group">
-                                        <input v-model="form.name" type="text" placeholder="Введите своё имя" class="form-control tab_form" required>
+                                        <input v-model="form.name" type="text" placeholder="Введите своё имя" class="form-control mt-3 tab_form" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -637,7 +626,7 @@
                                         Ваша фамилия
                                     </div>
                                     <div class="form-group">
-                                        <input v-model="form.surname" type="text" placeholder="Введите свою фамилию" class="form-control tab_form" required>
+                                        <input v-model="form.surname" type="text" placeholder="Введите свою фамилию" class="form-control mt-3 tab_form" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -760,7 +749,7 @@
                     .catch((error) => {
                         if(error.response.status === 422){
                             error.response.data.errors.video.forEach(elem => {
-                                this.$toast(elem);
+                                this.$toast.center(elem);
                             })
                             setTimeout(() => { this.videoIsLoaded = false }, 1000);
                         }
@@ -780,7 +769,18 @@
                 axios.post('api/sendMail', {
                     form: this.form
                 })
+
+                this.form.name = ''
+                this.form.surname = ''
+                this.form.email = ''
+                this.form.phone = ''
+                this.form.text = ''
             }
         },
+
+        mounted() {
+            if (this.$parent.toForm === true)
+                this.$refs.goForm.scrollIntoView()
+        }
     }
 </script>

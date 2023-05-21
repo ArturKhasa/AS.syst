@@ -6,6 +6,8 @@ use App\Http\Messages\Constants;
 use App\Http\Requests\ResultVideoRequest;
 use App\Jobs\DeleteTempFilesJob;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ResultController extends Controller
@@ -27,13 +29,17 @@ class ResultController extends Controller
 
         if ($request->file('video')) {
             $file = $request->file('video');
-            $extension = $file->getClientOriginalExtension();
-            $extension = $extension == 'MOV' ? 'mp4' : $extension;
+            $resName = $file->getClientOriginalName();
 
-            $fileUrl = self::removeFileExtension($file->store('public/videos/' . $sessionKey));
-            $resFileName = mb_substr($fileUrl, 14);
-            $resultUrl = base_path() . '/storage/app/' . $fileUrl . '.' . $extension;
+            $resPath = 'public/videos/' . $sessionKey;
+            Storage::putFileAs($resPath, $file, $resName);
+            $resultUrl = base_path() . '/storage/app/' . $resPath . "/$resName";
         };
+
+        $catalog = storage_path() . '/app/public/videos/' . $sessionKey;
+        exec("chmod -R 777 $catalog");
+        DeleteTempFilesJob::dispatch($catalog)
+            ->delay(now()->addMinutes(10));
 
         $command = escapeshellcmd('python3' . ' ' . base_path() . '/predict.py' . ' ' . $resultUrl);
         exec($command, $output);
@@ -59,8 +65,8 @@ class ResultController extends Controller
             'sum'     => $sum_result,
             'countPerson' => $this->countUsers,
             'report' => $this->getReport($avg_result),
-            'fileUrl' => 'storage/videos/'. $resFileName . '.' . $extension,
-            'resPhoto' => 'storage/videos/'. $resFileName . '190.' . 'jpg',
+            'fileUrl' => 'storage/videos/'. $sessionKey . "/$resName",
+            'resPhoto' => 'storage/videos/'. $sessionKey . self::removeFileExtension("/$resName" ) . '190.' . 'jpg',
             'emotion' => $this->getEmotion($avg_result),
             'session_key' => $sessionKey
         ];
@@ -151,17 +157,17 @@ class ResultController extends Controller
 
         switch ($maxIndex) {
             case 0:
-                return Constants::HAPPY;
+                return ['name' => 'happy', 'value' => Constants::HAPPY];
             case 1:
-                return Constants::SAD;
+                return ['name' => 'sadness', 'value' => Constants::SAD];
             case 2:
-                return Constants::FEAR;
+                return ['name' => 'fear', 'value' => Constants::FEAR];
             case 3:
-                return Constants::ANGRY;
+                return ['name' => 'angry', 'value' => Constants::ANGRY];
             case 4:
-                return Constants::NEUTRAL;
+                return ['name' => 'pokerface', 'value' => Constants::NEUTRAL];
             case 5:
-                return Constants::SURPRISE;
+                return ['name' => 'nothing', 'value' => Constants::SURPRISE];
             default:
                 return 'Не определено';
         }

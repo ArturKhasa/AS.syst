@@ -1,6 +1,17 @@
 <template>
     <div>
-        <div class="header">
+        <div v-if="isMobile" class="mobile_header">
+            <div class="mobile_header_logo">
+                <div class="mobile_header_logo_img">
+                    <div class="mobile_header_logo_img_1"></div>
+                    <div class="mobile_header_logo_img_2"></div>
+                    <div class="mobile_header_logo_img_3"></div>
+                </div>
+            </div>
+            <div class="mobile_header_logo_text">AS.SYST</div>
+        </div>
+
+        <div v-else class="header">
             <div v-if="showHome" class="header_content">
                 <div class="link_header_content_left">
                     <div class="img_logo">
@@ -36,7 +47,7 @@
             </div>
         </div>
         <home v-if="showHome" :mobile="isMobile"></home>
-        <result v-else :video="video" :video-image="videoImage"></result>
+        <result v-else :video="video" :video-image="videoImage" :mobile="isMobile"></result>
     </div>
 </template>
 
@@ -60,7 +71,8 @@
                     name: null,
                     size: null,
                     type: null
-                }
+                },
+                toForm: false
             }
         },
 

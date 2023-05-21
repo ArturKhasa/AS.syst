@@ -1,0 +1,214 @@
+@media screen and (max-width:710px)
+{
+    .all
+    {
+        display: none;
+    }
+
+    .mobile
+    {
+        display: block;
+    }
+
+    .mobile_header
+    {
+        display: flex;
+        flex-direction: row;
+        
+        background: linear-gradient(90deg, #82E80D 0%, #3DC21F 100%);
+    }
+    
+    .mobile_header_logo_img
+    {
+        width: 3.846153vw;
+        height: 3.846153vw;
+        
+        margin-left: 32.564102vw;
+        margin-top: 2.564102vw;
+        margin-bottom: 2.820512vw;
+    }
+    
+    .mobile_header_logo_img_1, .mobile_header_logo_img_2, .mobile_header_logo_img_3
+    {
+        background: linear-gradient(90deg, #FFFFFF 0%, #ECEBEB 100%);
+        
+        border-radius: 50%;
+    }
+    
+    .mobile_header_logo_img_1
+    {
+        width: 1.7256411vw;
+        height: 1.7256411vw;
+        
+        margin-left: 1.6358974vw;
+        margin-top: 2.4794871vw;
+    }
+    
+    .mobile_header_logo_img_2
+    {
+        width: 1.061vw;
+        height: 1.061vw;
+        
+        margin-left: 0.4846153vw;
+        margin-top: 0.320512vw;
+    }
+    
+    .mobile_header_logo_img_3
+    {
+        width: 0.9vw;
+        height: 0.9vw;
+        
+        margin-left: 2.2128205vw;
+        margin-top: -0.51282vw;
+    }
+    
+    .mobile_header_logo_text
+    {
+        font-family: 'PT Sans', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 4.102564vw;
+        line-height: 4.871794vw;
+        text-align: center;
+
+        color: #FFFFFF;
+        
+        margin-top: 2.307692vw;
+        margin-left: 1.282051vw;
+        margin-bottom: 2.051283vw;
+        margin-right: 30.17903vw;
+    }
+
+    .mobile_content
+    {
+        margin: 0 0 5.11509vw 6.39386vw;
+    }
+
+    .mobile_content_header_circles
+    {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .mobile_content_header
+    {
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 5.11509vw;
+        line-height: 6.13811vw;
+
+        display: flex;
+
+        color: #35BE1F;
+
+        margin: 5.11509vw 0 0 0;
+    }
+
+    .mobile_content_line
+    {
+        width: 86.95652vw;
+        height: 0.255754vw;
+
+        background: rgba(124, 123, 123, 0.15);
+        border-radius: 1.27877vw;
+
+        margin: 5.11509vw 0;
+    }
+
+    .mobile_content_line_1
+    {
+        width: 76.72634vw;
+        height: 0.255754vw;
+
+        background: rgba(124, 123, 123, 0.15);
+        border-radius: 1.27877vw;
+
+        margin: 3.83632vw 0 3.83632vw 10.23018vw;
+    }
+
+    .mobile_content_line_2
+    {
+        width: 76.72634vw;
+        height: 0.255754vw;
+
+        background: rgba(124, 123, 123, 0.15);
+        border-radius: 1.27877vw;
+
+        margin: 5.11509vw 0 5.11509vw 10.23018vw;
+    }
+
+    .mobile_footer
+    {
+        background: #1B1C37;
+    }
+
+    .mobile_footer_text
+    {
+        font-family: 'PT Sans', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2.04604vw;
+        line-height: 2.55754vw;
+
+        color: #FFFFFF;
+
+        margin-left: 5.11509vw;
+    }
+
+    .mobile_footer_text_1
+    {
+        padding-top: 5.11509vw;
+    }
+
+    .mobile_footer_text_2
+    {
+        padding-bottom: 5.11509vw;
+    }
+
+    .mobile_content_circles
+    {
+        display: flex;
+        flex-direction: row;
+
+        align-items: right;
+        margin: 0 6.39386vw 0 auto;
+    }
+
+    .mobile_content_circle_1, .mobile_content_circle_2, .mobile_content_circle_3
+    {
+        margin-left: 1.02302vw;
+    }
+
+    .mobile_content_circle_1, .mobile_content_circle_2, .mobile_content_circle_3
+    {
+        border: 0.255754vw solid #7C7B7B;
+        transform: rotate(-90deg);
+        border-radius: 50%;
+        background: #7C7B7B;
+        
+        width: 0.511509vw;
+        height: 0.511509vw;
+        
+        margin-top: 1.322751vw;
+    }
+
+    .diagramma
+    {
+        width: 74.1688vw;
+        height: 74.1688vw;
+
+        margin: 5.11509vw 0 0 6.39386vw;
+    }
+
+    .mobile_content_1_header
+    {
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 3.58056vw;
+        line-height: 3.58056vw;
+
+        color: #7C7B7B;
+    }
+}
