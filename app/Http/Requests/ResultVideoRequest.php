@@ -24,7 +24,7 @@ class ResultVideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'video' => 'required|mimes:mp4,mov,MOV'
+            'video' => 'required|mimes:mp4,mov,MOV,jpg'
         ];
     }
 

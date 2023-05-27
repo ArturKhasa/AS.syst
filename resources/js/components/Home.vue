@@ -191,7 +191,12 @@
                         </div>
                         <div class="content_4_two_text_3">
 <!--                            Выполнено: {{percent}}%-->
-                            <pulse-loader color="#82E70C"></pulse-loader>
+<!--                            <pulse-loader color="#82E70C"></pulse-loader>-->
+                            <div class="shell">
+                                <div class="bar" :style="{ width: progress + '%' }">
+                                    <span>{{ progress }}%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -556,7 +561,12 @@
                                 </div>
                                 <div class="mobile_content_4_two_text_3">
 <!--                                    Выполнено: n%-->
-                                    <pulse-loader color="#82E70C"></pulse-loader>
+<!--                                    <pulse-loader color="#82E70C"></pulse-loader>-->
+                                </div>
+                                <div class="shell_mobile">
+                                    <div class="bar" :style="{ width: progress + '%' }">
+                                        <span>{{ progress }}%</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -675,9 +685,9 @@
         components: {PulseLoader},
         data() {
             return {
+                progress: 0,
                 videoIsLoaded: false,
                 hasResult: false,
-                percent: 0,
                 form: {
                     name: '',
                     surname: '',
@@ -703,14 +713,12 @@
                 this.$parent.fileInfo.type = file.type
                 this.videoIsLoaded = true
 
-                let part = 1230000
-                let size = file.size
 
                 var self = this
                 setInterval( function() {
-                    self.percent++
-                }, size/part * 10);
-
+                    if(self.progress < 99)
+                        self.progress++
+                }, 1000);
                 let formData = new FormData()
                 formData.append('video', file)
 
@@ -721,8 +729,9 @@
                     }
                 })
                     .then((res) => {
+                        this.progress = 99
                         this.$parent.dataset = res.data
-                        this.hasResult = true
+                        setTimeout(() => { this.hasResult = true }, 2000);
                         this.$parent.showHeaderResult = true
                         this.$parent.video = res.data.fileUrl
                         this.$parent.videoImage = res.data.resPhoto
@@ -784,3 +793,37 @@
         }
     }
 </script>
+<style scoped>
+.shell {
+    line-height: 1.15503vw;
+    box-sizing: unset;
+    height: 20px;
+    width: 250px;
+    border: 1px solid #aaa;
+    border-radius: 13px;
+    padding: 3px;
+}
+
+.shell_mobile{
+    margin-left: 48px;
+    box-sizing: unset;
+    height: 20px;
+    width: 250px;
+    border: 1px solid #aaa;
+    border-radius: 13px;
+    padding: 3px;
+}
+
+.bar {
+    background: linear-gradient(to right, #0dcaf0, #50CD19);
+    height: 20px;
+    width: 15px;
+    border-radius: 9px;
+}
+span {
+    float: right;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 0.7em
+}
+</style>

@@ -30,6 +30,7 @@ class ResultController extends Controller
         if ($request->file('video')) {
             $file = $request->file('video');
             $resName = $file->getClientOriginalName();
+            $resName = str_replace(' ', '_', $resName);
 
             $resPath = 'public/videos/' . $sessionKey;
             Storage::putFileAs($resPath, $file, $resName);
@@ -40,9 +41,13 @@ class ResultController extends Controller
         exec("chmod -R 777 $catalog");
         DeleteTempFilesJob::dispatch($catalog)
             ->delay(now()->addMinutes(10));
-
         $command = escapeshellcmd('python3' . ' ' . base_path() . '/predict.py' . ' ' . $resultUrl);
+
+        Log::channel('supervisor')->info(print_r(['$command' => $command], true));
+
         exec($command, $output);
+
+        Log::channel('supervisor')->info(print_r(['$command' => $output], true));
 
         $test = [];
         foreach ($output as $key => $out) {
